@@ -1,3 +1,49 @@
 body {
     background-color: rgb(223, 210, 255);
   }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input, input:focus {
+  border: none;
+  border-radius: none;
+  outline: none;
+  transition: .1s;
+}
+
+.logo {
+  margin-top: 15%;
+}
+
+.selector {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+form {
+  text-align: center;
+}
+
+.searchbox {
+  line-height: 34px;
+  padding: 1px 10px;
+  width: 30%;
+  margin-top: 15px;
+}
+
+.searchbox:focus {
+  box-shadow: inset 0 0 0 1.5pt #2275ff;
+}
+
+.btn-primary {
+  margin-left: -4px !important;
+  border-radius: inherit !important;
+}
