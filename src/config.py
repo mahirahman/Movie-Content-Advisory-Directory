@@ -9,7 +9,3 @@ FAVICON = "public/fav/favicon.ico"
 
 # Site logo
 LOGO = "/public/img/logo.png"
-
-# If movie has no available image it will use this
-NULL_POSTER = "/public/img/null_image.png"
-

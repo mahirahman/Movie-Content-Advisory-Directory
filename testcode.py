@@ -19,8 +19,8 @@ info = get_allMovies.json()
 count = 0
 for data in info['results']:
 
-    # Exclude anything such as actors, filming locations, directors etc..
-    if (info['results'][count].get("titleType") != None):
+    # Exclude anything such as actors, filming locations, directors, unreleased etc..
+    if (info['results'][count].get("titleType") != None and info['results'][count].get("year") != None):
 
         # ID
         id = info['results'][count]['id'][7:-1]
@@ -29,10 +29,7 @@ for data in info['results']:
         title = info['results'][count].get("title")
 
         # Year movie was released
-        if (info['results'][count].get("year") == None):
-            release_date = "Unreleased"
-        else: 
-            release_date = info['results'][count].get("year")
+        release_date = info['results'][count].get("year")
 
         # Type of movie (Movie, TV, Mini, Short)
         movie_type = info['results'][count].get("titleType")
