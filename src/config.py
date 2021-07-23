@@ -8,4 +8,4 @@ API_KEY = "Enter API Key"
 FAVICON = "public/fav/favicon.ico"
 
 # Site logo
-LOGO = "/public/img/logo.png"
+LOGO = "/public/img/logo.svg"

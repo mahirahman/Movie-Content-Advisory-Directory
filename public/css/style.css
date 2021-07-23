@@ -19,6 +19,12 @@ input, input:focus {
   margin-top: 15%;
 }
 
+.logo-header {
+  padding: 10px;
+  margin-right: 15px;
+  width: 250px;
+}
+
 .selector {
   user-drag: none;
   -webkit-user-drag: none;
@@ -28,8 +34,15 @@ input, input:focus {
   -ms-user-select: none;
 }
 
-form {
+.form-landing {
   text-align: center;
+
+}
+
+.form-header {
+  margin-top: 50px !important;
+  width: -webkit-fill-available;
+  margin: auto;
 }
 
 .searchbox {
@@ -40,6 +53,30 @@ form {
 
 .searchbox:focus {
   box-shadow: inset 0 0 0 1.5pt #2275ff;
+}
+
+.searchbox-header {
+  width: -webkit-fill-available;
+  padding: 10px;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.movie-list-wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 11rem;
+  margin: 10px;
+  text-align: center;
 }
 
 .btn-primary {
