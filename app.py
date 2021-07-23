@@ -9,17 +9,7 @@ app_title = config.TITLE
 @app.route('/')
 def main():
     main_page = html(
-        head(
-            meta(charset="utf-8"),
-            meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no"),
-            title(app_title),
-            link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"),
-            link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"),
-            link(rel="stylesheet", href="public/css/mdb.min.css"),
-            link(rel="stylesheet", href="public/css/style.css"),
-            link(rel="icon", href= config.FAVICON),
-            script(src="public/js/mdb.min.js")
-        ),
+        config.HTML_HEADER_TAG,
         body(
             img(src=config.LOGO, alt="MCAD Logo", class_ ="logo center selector"),
             br(),
@@ -29,7 +19,6 @@ def main():
                     i(class_="fas fa-search")
                 ),
             )
-
         )
     )
     return str(main_page)
@@ -64,17 +53,7 @@ def movies():
     cards_str = "<div class=\"movie-list-wrap\">" + cards_str + "<div>"
 
     content = html(
-        head(
-            meta(charset="utf-8"),
-            meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no"),
-            title(app_title),
-            link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"),
-            link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"),
-            link(rel="stylesheet", href="public/css/mdb.min.css"),
-            link(rel="stylesheet", href="public/css/style.css"),
-            link(rel="icon", href= config.FAVICON),
-            script(src="public/js/mdb.min.js")
-        ),
+        config.HTML_HEADER_TAG,
         body(
             div(class_="header-flex")(
                 a(href="/")(
