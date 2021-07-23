@@ -2,26 +2,18 @@ from flask import Flask, request
 from pyhtml import *
 import src.config as config
 from src.getMovie import *
+from src.content import *
+from src.constructMovieCard import *
 
 app = Flask(__name__, static_url_path = '/public', static_folder = 'public')
-app_title = config.TITLE
 
 @app.route('/')
 def main():
-    main_page = html(
-        config.HTML_HEADER_TAG,
-        body(
-            img(src=config.LOGO, alt="MCAD Logo", class_ ="logo center selector"),
-            br(),
-            form(action="movies", class_="form-landing")(
-                input_(type="text", name="movie_title", placeholder="Search", class_="searchbox"),
-                button(type="Submit", value="Search", class_="btn btn-primary")(
-                    i(class_="fas fa-search")
-                ),
-            )
-        )
+    content = html(
+        HTML_HEAD_TAG,
+        LANDING_PAGE_BODY
     )
-    return str(main_page)
+    return str(content)
 
 @app.route('/movies', methods=["POST"])
 def movies():
@@ -29,47 +21,22 @@ def movies():
     movie = request.form['movie_title']
     movie_list = getMovieList(movie, config.API_KEY)
 
-    cards_str = ""
-    for id in movie_list:
-        movie_img = movie_list[id]['img']
-        movie_name = movie_list[id]['title']
-        movie_year = movie_list[id]['year']
-        movie_type = movie_list[id]['type']
-
-        list_of_cards = div(class_="card", style="width: 11rem;margin: 10px;text-align: center;")(
-                a(href="http://google.com")(
-                    img(src=f"{movie_img}", class_="card-img-top", alt=f"{movie_name} ({movie_year})"),
-                    div(class_="card-body")(
-                        h5(class_="card-title")(
-                            f"{movie_name}"
-                        ),
-                        p(f"{movie_type} - 9.5/10")
-                    )
-                )
-        )
-        cards_str = cards_str + str(list_of_cards)
-
-    #Concatenate flex wrap div to start and end of list of cards
-    cards_str = "<div class=\"movie-list-wrap\">" + cards_str + "<div>"
-
-    content = html(
-        config.HTML_HEADER_TAG,
-        body(
-            div(class_="header-flex")(
-                a(href="/")(
-                    img(src=config.LOGO, alt="MCAD Logo", class_ ="logo-header selector"),
-                ),
-                form(action="movies", class_="form-header")(
-                    input_(type="text", name="movie_title", placeholder="Search", class_="searchbox"),
-                    button(type="Submit", value="Search", class_="btn btn-primary")(
-                        i(class_="fas fa-search")
-                    ),
-                )
-            ),
-            br(),
-        )
+    # No movies found or not a valid search
+    if (movie_list == False):
+        content = html(
+        HTML_HEAD_TAG,
+        SEARCH_HEADER,
+        SEARCH_NOT_FOUND
     )
-    return str(content) + cards_str
+        return str(content)
+    else:
+        # Constuct movie cards
+        cards = "<div class=\"movie-list-wrap\">" + constructMovieCard(movie_list) + "<div>"
+        content = html(
+            HTML_HEAD_TAG,
+            SEARCH_HEADER
+        )
+        return str(content) + cards
 
 if __name__ == "__main__":
     app.run(debug=True)

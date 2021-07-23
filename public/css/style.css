@@ -15,6 +15,20 @@ input, input:focus {
   transition: .1s;
 }
 
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+  margin-top: 10%;
+}
+
+p {
+  margin-top: inherit !important;
+}
+
 .logo {
   margin-top: 15%;
 }
@@ -79,7 +93,31 @@ input, input:focus {
   text-align: center;
 }
 
+.card-img-top {
+  height: 260px;
+}
+
 .btn-primary {
   margin-left: -4px !important;
   border-radius: inherit !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }

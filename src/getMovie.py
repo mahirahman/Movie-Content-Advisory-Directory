@@ -1,6 +1,6 @@
 import requests
 
-# Returns a dictionary of movies based on what user has searched
+# Returns a dictionary of movies and information based on what user has searched
 def getMovieList(movie, api_key):
 
     movie_list = {}
@@ -10,6 +10,7 @@ def getMovieList(movie, api_key):
         'x-rapidapi-host': "imdb8.p.rapidapi.com"
         }
 
+    # Find list of movies based on search
     url = "https://imdb8.p.rapidapi.com/title/find"
     querystring = {"q":movie}
     get_allMovies = requests.request("GET", url, headers=headers, params=querystring)
@@ -26,8 +27,8 @@ def getMovieList(movie, api_key):
     count = 0
     for data in info['results']:
 
-        # Exclude anything such as actors, filming locations, directors, unreleased etc..
-        if (info['results'][count].get("titleType") != None and info['results'][count].get("year") != None):
+        # Exclude anything such as actors, filming locations, directors, tv episodes, unreleased etc..
+        if (info['results'][count].get("titleType") != None and info['results'][count].get("year") != None and info['results'][count]["titleType"] != "tvEpisode"):
 
             # ID
             id = info['results'][count]['id'][7:-1]
@@ -52,6 +53,19 @@ def getMovieList(movie, api_key):
                 movie_image_path = info['results'][count]['image']["url"]
             movie_list[id]['img'] = movie_image_path
 
-            #print(f"ID: {id}\nTitle: {title} ({release_date})\nType: {movie_type}\n{movie_image_path}\n")
+            # Movie Rating
+            url = "https://imdb8.p.rapidapi.com/title/get-ratings"
+            querystring = {"tconst":id}
+            getRatings = requests.request("GET", url, headers=headers, params=querystring)
+            ratings_list = getRatings.json()
+
+            if(ratings_list['canRate'] == True and ratings_list.get("rating") != None):
+                rating = ratings_list['rating']
+                movie_list[id]['rating'] = rating
+            else:
+                rating = None
+                movie_list[id]['rating'] = rating
+
+            #print(f"ID: {id}\nTitle: {title} ({release_date})\nType: {movie_type} - {rating}\n{movie_image_path}\n")
         count += 1
     return movie_list
