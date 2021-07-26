@@ -1,4 +1,4 @@
-from pyhtml import *
+import secrets
 
 # Title of the web app
 TITLE = "Movie Content Advisory Directory"
@@ -11,3 +11,6 @@ FAVICON = "public/fav/favicon.ico"
 
 # Site logo
 LOGO = "/public/img/logo.svg"
+
+# 64 BYTE User secret
+SESSION_KEY = secrets.token_urlsafe(64)

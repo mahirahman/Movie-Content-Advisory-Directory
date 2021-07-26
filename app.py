@@ -3,9 +3,11 @@ from pyhtml import *
 import src.config as config
 from src.getMovie import *
 from src.content import *
-from src.constructMovieCard import *
+from src.constructMovieCards import *
+#from src.contentAdvisory import *
 
 app = Flask(__name__, static_url_path = '/public', static_folder = 'public')
+app.config['SECRET_KEY'] = config.SESSION_KEY
 
 @app.route('/')
 def main():
@@ -23,20 +25,28 @@ def movies():
 
     # No movies found or not a valid search
     if (movie_list == False):
-        content = html(
+        CARD_LIST = SEARCH_NOT_FOUND
+    else:
+        CARD_LIST = div(class_="movie-list-wrap")(
+                        constructMovieCards(movie_list)
+                    )
+
+    # Constuct search page
+    content = html(
         HTML_HEAD_TAG,
         SEARCH_HEADER,
-        SEARCH_NOT_FOUND
+        CARD_LIST
     )
-        return str(content)
-    else:
-        # Constuct movie cards
-        cards = "<div class=\"movie-list-wrap\">" + constructMovieCard(movie_list) + "<div>"
-        content = html(
-            HTML_HEAD_TAG,
-            SEARCH_HEADER
-        )
-        return str(content) + cards
+    return str(content)
+
+@app.route('/advisory/<movie_ID>')
+def advisory(movie_ID):
+    content = html(
+        HTML_HEAD_TAG,
+        SEARCH_HEADER,
+        p(f'{movie_ID}')
+    )
+    return str(content)
 
 if __name__ == "__main__":
     app.run(debug=True)
