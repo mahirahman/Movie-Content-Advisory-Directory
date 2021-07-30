@@ -40,7 +40,6 @@ p {
 }
 
 .selector {
-  user-drag: none;
   -webkit-user-drag: none;
   user-select: none;
   -moz-user-select: none;
@@ -100,6 +99,34 @@ p {
 .btn-primary {
   margin-left: -4px !important;
   border-radius: inherit !important;
+}
+
+.card-title {
+  word-wrap: initial;
+}
+
+.list-group-flush>.list-group-item {
+  border-bottom-width: 0;
+  border-top-width: 1px;
+  border-top-color: #bdbdbd;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.card-subtext {
+  margin: 0 !important;
+}
+
+.card-body-details {
+  padding: 10px !important;
+}
+
+.img-details {
+  height: 496px;
+}
+
+.card-details {
+  width: 21rem !important; 
 }
 
 /* width */

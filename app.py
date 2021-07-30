@@ -1,14 +1,16 @@
 from flask import Flask, request
 from pyhtml import *
+from requests import api
 import src.config as config
-from src.getMovie import *
+from src.imdb_requests import *
 from src.content import *
-from src.constructMovieCards import *
-#from src.contentAdvisory import *
+from src.movie_cards import *
+from src.movie_details import *
 
 app = Flask(__name__, static_url_path = '/public', static_folder = 'public')
 app.config['SECRET_KEY'] = config.SESSION_KEY
 
+# Landing Page
 @app.route('/')
 def main():
     content = html(
@@ -17,34 +19,39 @@ def main():
     )
     return str(content)
 
+# Movies Page
 @app.route('/movies', methods=["POST"])
 def movies():
 
     movie = request.form['movie_title']
-    movie_list = getMovieList(movie, config.API_KEY)
+    movie_list = get_movie_list(movie, config.API_KEY)
 
     # No movies found or not a valid search
     if (movie_list == False):
-        CARD_LIST = SEARCH_NOT_FOUND
+        PAGE_BODY = SEARCH_NOT_FOUND
     else:
-        CARD_LIST = div(class_="movie-list-wrap")(
-                        constructMovieCards(movie_list)
+        # Generate the movie cards
+        PAGE_BODY = div(class_="movie-list-wrap")(
+                        construct_movie_cards(movie_list)
                     )
 
     # Constuct search page
     content = html(
         HTML_HEAD_TAG,
         SEARCH_HEADER,
-        CARD_LIST
+        PAGE_BODY
     )
     return str(content)
 
+# Movie Advisory Page
 @app.route('/advisory/<movie_ID>')
 def advisory(movie_ID):
+    
+
     content = html(
         HTML_HEAD_TAG,
         SEARCH_HEADER,
-        p(f'{movie_ID}')
+        get_movie_info(movie_ID, config.API_KEY)
     )
     return str(content)
 

@@ -19,7 +19,7 @@ HTML_HEAD_TAG = head(
 LANDING_PAGE_BODY = body(
                         img(src=LOGO, alt="MCAD Logo", class_ ="logo center selector"),
                         br(),
-                        form(name="movie_input", action="movies", class_="form-landing", onsubmit="return validateForm()")(
+                        form(name="movie_input", action="/movies", class_="form-landing", onsubmit="return validateForm()")(
                             input_(type="text", name="movie_title", placeholder="Search", class_="searchbox"),
                             button(type="Submit", value="Search", class_="btn btn-primary")(
                                 i(class_="fas fa-search")
@@ -33,18 +33,16 @@ SEARCH_HEADER = body(
                         a(href="/")(
                             img(src=LOGO, alt="MCAD Logo", class_ ="logo-header selector"),
                         ),
-                        form(name="movie_input", action="movies", class_="form-header", onsubmit="return validateForm()")(
+                        form(name="movie_input", action="/movies", class_="form-header", onsubmit="return validateForm()")(
                             input_(type="text", name="movie_title", placeholder="Search", class_="searchbox"),
                             button(type="Submit", value="Search", class_="btn btn-primary")(
                                 i(class_="fas fa-search")
                             ),
                         )
                     ),
-                    br(),
                 )
 
 # Error Box
 SEARCH_NOT_FOUND = div(class_="alert")(
-                    p("Uh Oh - No Title Found  🤷")
+                    p("Uh Oh - No Title Found 🤷")
                 )
-                
