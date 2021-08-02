@@ -7,7 +7,7 @@ TITLE = "Movie Content Advisory Directory"
 API_KEY = "Enter API Key"
 
 # Favicon file
-FAVICON = "public/fav/favicon.ico"
+FAVICON = "/public/fav/favicon.ico"
 
 # Site logo
 LOGO = "/public/img/logo.svg"

@@ -1,14 +1,14 @@
-from imdb_requests import *
+from src.imdb_requests import *
+from pyhtml import *
 
 # Returns advisory data for nudity otherwise returns None
 def nudity_advisory(data):
     for key in data['parentalguide']:
         if (key["label"] == "nudity"):
-            nudity = {}
+            nudity = []
             if (key.get("items") != None):
                 for key2 in key["items"]:
-                    nudity[key2["text"]] = {}
-                    nudity[key2["text"]]['isSpoiler'] = key2["isSpoiler"]
+                    nudity.append(key2["text"])
             return nudity
     return None
     
@@ -23,11 +23,10 @@ def nudity_advisory_status(data):
 def violence_advisory(data):
     for key in data['parentalguide']:
         if (key["label"] == "violence"):
-            violence = {}
+            violence = []
             if (key.get("items") != None):
                 for key2 in key["items"]:
-                    violence[key2["text"]] = {}
-                    violence[key2["text"]]['isSpoiler'] = key2["isSpoiler"]
+                    violence.append(key2["text"])
             return violence
     return None
 
@@ -41,11 +40,10 @@ def violence_advisory_status(data):
 def profanity_advisory(data):
     for key in data['parentalguide']:
         if (key["label"] == "profanity"):
-            profanity = {}
+            profanity = []
             if (key.get("items") != None):
                 for key2 in key["items"]:
-                    profanity[key2["text"]] = {}
-                    profanity[key2["text"]]['isSpoiler'] = key2["isSpoiler"]
+                    profanity.append(key2["text"])
             return profanity
     return None
 
@@ -59,11 +57,10 @@ def profanity_advisory_status(data):
 def alcohol_advisory(data):
     for key in data['parentalguide']:
         if (key["label"] == "alcohol"):
-            drugs = {}
+            drugs = []
             if (key.get("items") != None):
                 for key2 in key["items"]:
-                    drugs[key2["text"]] = {}
-                    drugs[key2["text"]]['isSpoiler'] = key2["isSpoiler"]
+                    drugs.append(key2["text"])
             return drugs
     return None
 
@@ -77,11 +74,10 @@ def alcohol_advisory_status(data):
 def frightening_advisory(data):
     for key in data['parentalguide']:
         if (key["label"] == "frightening"):
-            frightening = {}
+            frightening = []
             if (key.get("items") != None):
                 for key2 in key["items"]:
-                    frightening[key2["text"]] = {}
-                    frightening[key2["text"]]['isSpoiler'] = key2["isSpoiler"]
+                    frightening.append(key2["text"])
             return frightening
     return None
 
@@ -104,37 +100,73 @@ def get_content_advisory_dict(movie_ID, api_key):
         advisory_data = advisory_data.json()
         if (advisory_data["parentalguide"] == None):
             return False
+    return advisory_data
 
-        print(f'\n{nudity_advisory(advisory_data)}')
-        print(f'{nudity_advisory_status(advisory_data)}\n')
+def construct_advisory_text(nudity_list):
+    html_advisory_list = []
+    for text in nudity_list:
+          html_advisory_list.append(p(class_="card-text")(text))
+    return html_advisory_list
 
-        print(f'{violence_advisory(advisory_data)}')
-        print(f'{violence_advisory_status(advisory_data)}\n')
 
-        print(f'{profanity_advisory(advisory_data)}')
-        print(f'{profanity_advisory_status(advisory_data)}\n')
-
-        print(f'{alcohol_advisory(advisory_data)}')
-        print(f'{alcohol_advisory_status(advisory_data)}\n')
-
-        print(f'{frightening_advisory(advisory_data)}')
-        print(f'{frightening_advisory_status(advisory_data)}\n')
-
-        return True
-
-assert(get_content_advisory_dict("tt0352416", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt12227440", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == False)
-assert(get_content_advisory_dict("tt0816692", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt0286716", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt0099387", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt0206488", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == False) 
-assert(get_content_advisory_dict("tt0800080", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt10857160", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == False) 
-assert(get_content_advisory_dict("tt10872600", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == False) 
-assert(get_content_advisory_dict("tt6320628", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt5807780", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt0145487", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt0948470", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt4633694", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt2930604", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
-assert(get_content_advisory_dict("tt3748528", "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db") == True) 
+def construct_advisory(html_nudity_list, html_violence_list, html_profanity_list, html_alcohol_list, html_frightening_list, 
+                        nudity_status, violence_status, profanity_status, alcohol_status, frightening_status):
+    return  div (class_="card text-center advisory-box")(
+            div(class_="container")(
+                h5(class_="card-title round-edges-top-only")(
+                    "Sex & Nudity"
+                ),
+                h5(class_=f'status-box {nudity_status}')(
+                    nudity_status
+                )
+            ),
+            div(class_="card-body card-advisory round-edges")(
+                    html_nudity_list
+            ),
+            div(class_="container")(
+                h5(class_="card-title round-edges-top-only")(
+                    "Violence & Gore"
+                ),
+                h5(class_=f'status-box {violence_status}')(
+                    violence_status
+                )
+            ),
+            div(class_="card-body card-advisory round-edges")(
+                    html_violence_list
+            ),
+            div(class_="container")(
+                h5(class_="card-title round-edges-top-only")(
+                    "Profanity"
+                ),
+                h5(class_=f'status-box {profanity_status}')(
+                    profanity_status
+                )
+            ),
+            div(class_="card-body card-advisory round-edges")(
+                    html_profanity_list
+            )
+            ,
+            div(class_="container")(
+                h5(class_="card-title round-edges-top-only")(
+                    "Alcohol, Drugs & Smoking"
+                ),
+                h5(class_=f'status-box {alcohol_status}')(
+                    alcohol_status
+                )
+            ),
+            div(class_="card-body card-advisory round-edges")(
+                    html_alcohol_list
+            )
+            ,
+            div(class_="container")(
+                h5(class_="card-title round-edges-top-only")(
+                    "Frightening & Intense Scenes"
+                ),
+                h5(class_=f'status-box {frightening_status}')(
+                    frightening_status
+                )
+            ),
+            div(class_="card-body card-advisory round-edges")(
+                    html_frightening_list
+            )
+        )

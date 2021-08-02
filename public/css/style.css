@@ -126,7 +126,71 @@ p {
 }
 
 .card-details {
-  width: 21rem !important; 
+  width: 21rem !important;
+  float: left;
+}
+
+.status-box {
+  float: right;
+  padding: 1px;
+  margin-left: 10px;
+  margin-top: 5px;
+  text-transform: uppercase;
+  font-size: 13px;
+  align-self: start;
+}
+
+.mild {
+  background-color: #c5e197;
+}
+
+.moderate {
+  background-color: #fbca8c;
+}
+
+.severe {
+  background-color: #ffb3ad;
+}
+
+.none {
+  background-color: #d0d0d0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  background-color: #fbfbfb;
+}
+
+.advisory-box {
+  width: auto; 
+  margin: auto; 
+  margin: 10px 0px;
+}
+
+.card-advisory {
+  background: #f6f6f5;
+  width: 97%;
+  align-self: center;
+  padding: 10px !important;
+}
+
+.card-advisory:last-child {
+  margin-bottom: 20px;
+}
+
+
+.round-edges {
+  border-top-left-radius: calc(.5rem - 1px);
+  border-top-right-radius: calc(.5rem - 1px);
+  border-bottom-right-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.round-edges-top-only {
+  border-top-left-radius: calc(.5rem - 1px);
+  border-top-right-radius: calc(.5rem - 1px);
 }
 
 /* width */

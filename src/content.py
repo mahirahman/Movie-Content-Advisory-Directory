@@ -42,7 +42,11 @@ SEARCH_HEADER = body(
                     ),
                 )
 
-# Error Box
+# No Movies Error Box
 SEARCH_NOT_FOUND = div(class_="alert")(
                     p("Uh Oh - No Title Found 🤷")
                 )
+
+# No Advisory Error Box
+
+
