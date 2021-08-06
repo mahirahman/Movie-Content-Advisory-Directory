@@ -102,10 +102,12 @@ def get_content_advisory_dict(movie_ID, api_key):
             return False
     return advisory_data
 
-def construct_advisory_text(nudity_list):
+def construct_advisory_text(html_list):
+    if (html_list == None):
+        return None
     html_advisory_list = []
-    for text in nudity_list:
-          html_advisory_list.append(p(class_="card-text")(text))
+    for text in html_list:
+        html_advisory_list.append(p(class_="card-text")(text))
     return html_advisory_list
 
 
