@@ -15,6 +15,5 @@ LOGO = "/public/img/logo.svg"
 # 64 BYTE User secret
 SESSION_KEY = secrets.token_urlsafe(64)
 
-# Set value to True if using on a production server
-# Otherwise set value to False if using on development server
-PRODUCTION = True
+# Set to a boolean value to enable debug mode when running
+DEBUG = True

@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /movies/
+
+User-agent: *
+Disallow: /advisory/
+
+User-agent: *
+Disallow: /public/fav/
+
+User-agent: *
+Disallow: /public/img/null_image.png
+
+Sitemap: /sitemap.xml
