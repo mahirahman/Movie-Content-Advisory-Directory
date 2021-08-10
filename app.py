@@ -105,7 +105,7 @@ def advisory(movie_ID):
     return str(content)
 
 if __name__ == "__main__":
-    if (PRODUCTION):
-        app.run(debug=False, host='0.0.0.0')
-    else:
+    if (DEBUG):
         app.run(debug=True)
+    else:
+        app.run(debug=False)
