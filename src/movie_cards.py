@@ -1,19 +1,19 @@
-from pyhtml import *
-from flask import url_for
 from src.imdb_requests import *
 
-def get_movie_list(movie_ID, api_key):
-    get_all_movies = get_movie_list_request(movie_ID, api_key)
-    # Check for 400/500 Internal Server Error
-    if (get_all_movies.status_code == 500 or get_all_movies.status_code == 400):
+# Produces a dictionary of movies from API
+# If the API produces an error it will return None
+def get_movie_dict(movie_ID, api_key):
+    get_all_movies = get_movies_dict_request(movie_ID, api_key)
+    # Check for 400/500 Internal Server and Bad Connection Error
+    if (get_all_movies == None or get_all_movies.status_code == 500 or get_all_movies.status_code == 400):
         return False
     else:
         info = get_all_movies.json()
         # Check if there are any movies available from search
-        if (get_all_movies.status_code == 200 and len(info) == 4):
+        if ('results' not in info):
             return False
 
-    movie_list = {}
+    movies_dict = {}
     for data in info['results']:
 
         # Exclude anything such as actors, filming locations, directors, tv episodes, unreleased etc..
@@ -21,49 +21,30 @@ def get_movie_list(movie_ID, api_key):
             
             # ID
             id = data['id'][7:-1]
-            movie_list[id] = {}
+            movies_dict[id] = {}
 
             # Title of movie
             title = data.get("title")
-            movie_list[id]['title'] = title
+            movies_dict[id]['title'] = title
 
             # Year movie was released
             release_date = data.get("year")
-            movie_list[id]['year'] = release_date
+            movies_dict[id]['year'] = release_date
 
             # Type of movie (Movie, TV, Mini, Short)
             movie_type = data.get("titleType")
-            movie_list[id]['type'] = movie_type
+            movies_dict[id]['type'] = movie_type
 
             # Poster/Image of the movie
             if (data.get('image') == None):
                 movie_image_path = "/public/img/null_image.png"
             else:
                 movie_image_path = data['image']["url"]
-            movie_list[id]['img'] = movie_image_path
+            movies_dict[id]['img'] = movie_image_path
 
-    return movie_list
+    return movies_dict
 
-# Construct HTML cards for the amount of movies in movie list
-def construct_movie_cards(movie_list):
-    movie_cards = []
-    for movie_id in movie_list:
-        movie_cards.append(
-            div(class_="card")(
-                a(href=url_for('advisory', movie_ID=movie_id))(
-                    img(src=f"{movie_list[movie_id]['img']}", class_="card-img-top selector", alt=f"{movie_list[movie_id]['title']} ({movie_list[movie_id]['year']})"),
-                    div(class_="card-body")(
-                        h5(class_="card-title")(
-                            f"{movie_list[movie_id]['title']}"
-                        ),
-                        h5(f"({movie_list[movie_id]['year']})"),
-                        p(f"{format_movie_type_string(movie_list[movie_id]['type']) }")
-                    )
-                )
-            ))
-    return movie_cards
-
-# Cleans the movie type string
+# Cleans the movie type string into a readable format
 def format_movie_type_string(movie_type):
     if (movie_type == "movie"):
         movie_type = "Movie"
@@ -73,6 +54,8 @@ def format_movie_type_string(movie_type):
         movie_type = "Video Game"
     elif (movie_type == "tvSeries"):
         movie_type = "TV Series"
+    elif (movie_type == "tvMiniSeries"):
+        movie_type = "TV Mini Series"
     elif (movie_type == "short"):
         movie_type = "Short"
     elif (movie_type == "tvEpisode"):

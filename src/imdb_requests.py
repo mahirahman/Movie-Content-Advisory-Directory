@@ -8,12 +8,15 @@ def request_headers(api_key):
     return headers
 
 # Find title by whatever you are familiar with, such as : name of title, album, song, etc…
-def get_movie_list_request(movie_ID, api_key):
+def get_movies_dict_request(movie_ID, api_key):
 
     # Find list of movies based on search
     url = "https://imdb8.p.rapidapi.com/title/find"
     querystring = {"q":movie_ID}
-    get_all_movies = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
+    try:
+        get_all_movies = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
+    except requests.exceptions.ConnectionError:
+        return None
 
     return get_all_movies
 
@@ -22,7 +25,10 @@ def get_movie_details_request(movie_ID, api_key):
 
     url = "https://imdb8.p.rapidapi.com/title/get-overview-details"
     querystring = {"tconst":movie_ID,"currentCountry":"US"}
-    get_movie_details = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
+    try:
+        get_movie_details = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
+    except requests.exceptions.ConnectionError:
+        return None
 
     return get_movie_details
 
@@ -31,6 +37,9 @@ def get_movie_advisory_request(movie_ID, api_key):
 
     url = "https://imdb8.p.rapidapi.com/title/get-parental-guide"
     querystring = {"tconst":movie_ID}
-    get_advisory = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
+    try:
+        get_advisory = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
+    except requests.exceptions.ConnectionError:
+        return None
 
     return get_advisory

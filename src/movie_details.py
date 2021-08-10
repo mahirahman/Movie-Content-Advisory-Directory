@@ -1,11 +1,12 @@
-from pyhtml import *
 from src.imdb_requests import *
 from src.movie_cards import *
+from src.content import *
 
+# Returns information about the movie in HTML format and the raw data in a tuple
 def get_movie_info(movie_ID, api_key):
     get_movie_details = get_movie_details_request(movie_ID, api_key)
-    # Check for 400/500 Server Error
-    if (get_movie_details.status_code == 500  or get_movie_details.status_code == 400):
+    # Check for 400/500 Internal Server and Bad Connection Error
+    if (get_movie_details == None or get_movie_details.status_code == 500 or get_movie_details.status_code == 400):
         return False
     else:
         info = get_movie_details.json()
@@ -52,35 +53,13 @@ def get_movie_info(movie_ID, api_key):
                 if (info[data].get("text") != None):
                     movie_plot = f'{info[data]["text"]}'
 
-    return construct_movie_details_card(movie_title, movie_year, movie_image_path, movie_rating, format_movie_type_string(movie_type), movie_time_string, certificate, movie_plot)
+    return (construct_movie_details_card(movie_title, movie_year, movie_image_path, movie_rating, format_movie_type_string(movie_type), movie_time_string, certificate, movie_plot),
+    movie_title,
+    movie_year,
+    movie_image_path
+)
 
-def construct_movie_details_card(title, year, title_img, rating, type, running_time, certificate, plot):
-    return div(class_="card card-details")(
-                        img(src=title_img, class_="card-img-top selector img-details", alt=f'{title} ({year})'),
-                        div(class_="card-body card-body-details")(
-                            h5(class_="card-title")(
-                                title
-                            ),
-                            h5(class_="card-title")(
-                                f'({year})'
-                            ),
-                            p(class_="card-subtext")(
-                                f'{rating}'
-                            )
-                        ),
-                        div(class_="list-group list-group-flush")(
-                            h5(class_="list-group-item")(
-                                f'{type} - {running_time}'
-                            ),
-                            h5(class_="list-group-item")(
-                                certificate
-                            ),
-                            h5(class_="list-group-item")(
-                                plot
-                            )
-                        )
-                    )
-
+# Formats the movie rating string with certificate and reason
 def format_movie_rating_string(certificate):
     if (certificate == "G" or certificate == "TV-G" or certificate == "TV-Y"):
         rating_reason = "all audiences"
@@ -110,9 +89,9 @@ def format_movie_rating_string(certificate):
         rating_reason = "exhibition"
     else:
         return f'Rated {certificate}'
-
     return f'Rated {certificate} for {rating_reason}'
 
+#
 def convert_to_hour_mins(movie_total_mins):
     # Get hours with floor division
     hours = movie_total_mins // 60
@@ -134,5 +113,4 @@ def convert_to_hour_mins(movie_total_mins):
         movie_time_string = f'{minutes} mins'
     else:
         movie_time_string = f'{hours} hours {minutes} mins'
-
     return movie_time_string

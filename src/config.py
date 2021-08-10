@@ -3,7 +3,7 @@ import secrets
 # Title of the web app
 TITLE = "Movie Content Advisory Directory"
 
-# API Key can be generated from https://rapidapi.com/apidojo/api/imdb8
+# API Key generated from https://rapidapi.com/apidojo/api/imdb8
 API_KEY = "Enter API Key"
 
 # Favicon file
@@ -14,3 +14,7 @@ LOGO = "/public/img/logo.svg"
 
 # 64 BYTE User secret
 SESSION_KEY = secrets.token_urlsafe(64)
+
+# Set value to True if using on a production server
+# Otherwise set value to False if using on development server
+PRODUCTION = True

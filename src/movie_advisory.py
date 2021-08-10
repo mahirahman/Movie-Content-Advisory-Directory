@@ -1,5 +1,4 @@
 from src.imdb_requests import *
-from pyhtml import *
 
 # Returns advisory data for nudity otherwise returns None
 def nudity_advisory(data):
@@ -30,6 +29,7 @@ def violence_advisory(data):
             return violence
     return None
 
+# Gets the status level of violence advisory
 def violence_advisory_status(data):
     for key in data['parentalguide']:
         if (key["label"] == "violence"):
@@ -47,6 +47,7 @@ def profanity_advisory(data):
             return profanity
     return None
 
+# Gets the status level of profanity advisory
 def profanity_advisory_status(data):
     for key in data['parentalguide']:
         if (key["label"] == "profanity"):
@@ -64,6 +65,7 @@ def alcohol_advisory(data):
             return drugs
     return None
 
+# Gets the status level of alcohol advisory
 def alcohol_advisory_status(data):
     for key in data['parentalguide']:
         if (key["label"] == "alcohol"):
@@ -81,19 +83,18 @@ def frightening_advisory(data):
             return frightening
     return None
 
+# Gets the status level of frightening advisory
 def frightening_advisory_status(data):
     for key in data['parentalguide']:
         if (key["label"] == "frightening"):
             return key["severityVotes"]["status"]
     return None
 
-###############################################################################################
-# Returns all content advisory data in a dictionary
+# Returns all content advisory JSON data in a dictionary
 def get_content_advisory_dict(movie_ID, api_key):
-
     advisory_data = get_movie_advisory_request(movie_ID, api_key)
-    # Check for 500 Internal Server Error
-    if (advisory_data.status_code == 500):
+    # Check for 400/500 Internal Server and Bad Connection Error
+    if (advisory_data == None or advisory_data.status_code == 500 or advisory_data.status_code == 400):
         return False
     else:
         # Check if there is any information to display
@@ -101,74 +102,3 @@ def get_content_advisory_dict(movie_ID, api_key):
         if (advisory_data["parentalguide"] == None):
             return False
     return advisory_data
-
-def construct_advisory_text(html_list):
-    if (html_list == None):
-        return None
-    html_advisory_list = []
-    for text in html_list:
-        html_advisory_list.append(p(class_="card-text")(text))
-    return html_advisory_list
-
-
-def construct_advisory(html_nudity_list, html_violence_list, html_profanity_list, html_alcohol_list, html_frightening_list, 
-                        nudity_status, violence_status, profanity_status, alcohol_status, frightening_status):
-    return  div (class_="card text-center advisory-box")(
-            div(class_="container")(
-                h5(class_="card-title round-edges-top-only")(
-                    "Sex & Nudity"
-                ),
-                h5(class_=f'status-box {nudity_status}')(
-                    nudity_status
-                )
-            ),
-            div(class_="card-body card-advisory round-edges")(
-                    html_nudity_list
-            ),
-            div(class_="container")(
-                h5(class_="card-title round-edges-top-only")(
-                    "Violence & Gore"
-                ),
-                h5(class_=f'status-box {violence_status}')(
-                    violence_status
-                )
-            ),
-            div(class_="card-body card-advisory round-edges")(
-                    html_violence_list
-            ),
-            div(class_="container")(
-                h5(class_="card-title round-edges-top-only")(
-                    "Profanity"
-                ),
-                h5(class_=f'status-box {profanity_status}')(
-                    profanity_status
-                )
-            ),
-            div(class_="card-body card-advisory round-edges")(
-                    html_profanity_list
-            )
-            ,
-            div(class_="container")(
-                h5(class_="card-title round-edges-top-only")(
-                    "Alcohol, Drugs & Smoking"
-                ),
-                h5(class_=f'status-box {alcohol_status}')(
-                    alcohol_status
-                )
-            ),
-            div(class_="card-body card-advisory round-edges")(
-                    html_alcohol_list
-            )
-            ,
-            div(class_="container")(
-                h5(class_="card-title round-edges-top-only")(
-                    "Frightening & Intense Scenes"
-                ),
-                h5(class_=f'status-box {frightening_status}')(
-                    frightening_status
-                )
-            ),
-            div(class_="card-body card-advisory round-edges")(
-                    html_frightening_list
-            )
-        )

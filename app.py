@@ -1,8 +1,6 @@
-from flask import Flask, request
+from flask import Flask, request, session
 from pyhtml import *
-from requests import api
 import src.config as config
-from src.imdb_requests import *
 from src.content import *
 from src.movie_cards import *
 from src.movie_details import *
@@ -16,46 +14,58 @@ app.config['SECRET_KEY'] = config.SESSION_KEY
 def main():
     content = html(
         HTML_HEAD_TAG,
-        LANDING_PAGE_BODY
+        body(
+            DARK_MODE_SWITCH,
+            LANDING_PAGE_BODY,
+            previous_searched_movies(session)
+        )
     )
+
     return str(content)
 
 # Movies Page
 @app.route('/movies', methods=["POST"])
 def movies():
-
+    # String passed from landing page input
     movie = request.form['movie_title']
-    movie_list = get_movie_list(movie, config.API_KEY)
+
+    # Dictionary of movies based on input
+    movies_dict = get_movie_dict(movie, config.API_KEY)
 
     # No movies found or not a valid search
-    if (movie_list == False):
+    if (movies_dict == False or movies_dict == {}):
         PAGE_BODY = SEARCH_NOT_FOUND
     else:
         # Generate the movie cards
         PAGE_BODY = div(class_="movie-list-wrap")(
-                        construct_movie_cards(movie_list)
+                        construct_movie_cards(movies_dict)
                     )
 
     # Constuct search page
     content = html(
         HTML_HEAD_TAG,
-        SEARCH_HEADER,
-        PAGE_BODY
+        body(
+            div(class_="scroll-container-header")(
+                previous_searched_movies(session)
+            ),
+            SEARCH_HEADER,
+            DARK_MODE_SWITCH,
+            PAGE_BODY
+        )
     )
     return str(content)
 
 # Movie Advisory Page
 @app.route('/advisory/<movie_ID>')
 def advisory(movie_ID):
+    (MOVIE_DETAILS, movie_title, movie_year, movie_img_path) = get_movie_info(movie_ID, config.API_KEY)
+    # Add movie_ID and movie poster to session dictionary
+    if movie_ID not in session:
+        session[movie_ID] = movie_img_path, movie_title, movie_year
 
     advisory_data = get_content_advisory_dict(movie_ID, API_KEY)
     if (advisory_data == False):
-        PAGE_ADVISORY = div(class_="alert")(
-                    p("Uh Oh - No Content Advisories Found 🤷"),
-                    a(href=f'https://www.imdb.com/registration/signin?u=https%3A%2F%2Fwww.imdb.com%2Ftitle%2F{movie_ID}%2Fparentalguide', target="_blank")(
-                        "Be the first to evaluate this"
-                    )
-                )
+        PAGE_ADVISORY = no_advisories(movie_ID)
     else:
         # Get the advisory string texts in an array
         nudity_list = nudity_advisory(advisory_data)
@@ -84,11 +94,18 @@ def advisory(movie_ID):
 
     content = html(
         HTML_HEAD_TAG,
+        div(class_="scroll-container-header")(
+            previous_searched_movies(session)
+        ),
+        DARK_MODE_SWITCH,
         SEARCH_HEADER,
-        get_movie_info(movie_ID, config.API_KEY),
+        MOVIE_DETAILS,
         PAGE_ADVISORY
     )
     return str(content)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    if (PRODUCTION):
+        app.run(debug=False, host='0.0.0.0')
+    else:
+        app.run(debug=True)

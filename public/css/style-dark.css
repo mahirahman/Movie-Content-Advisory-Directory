@@ -1,0 +1,64 @@
+.dark-theme {
+  background-color: #16181a;
+  transition: background 0.2s linear;
+}
+
+.dark-theme .search-title {
+  color: #6687be;
+}
+
+.dark-theme .filter {
+  filter: brightness(.8) contrast(0.9);
+}
+
+.dark-theme p {
+  color: #ffffff;
+}
+
+.dark-theme .alert {
+  background-color: #bc372d;
+}
+
+.dark-theme .searchbox {
+  background-color: #222222;
+  color: #ffffff
+}
+
+.dark-theme .searchbox:focus {
+  box-shadow: inset 0 0 0 1.5pt #1a56ba;
+}
+
+.dark-theme ::placeholder {
+  color: #878787;
+  opacity: 1;
+}
+
+.dark-theme :-ms-input-placeholder {
+  color: #878787;
+}
+
+.dark-theme ::-ms-input-placeholder {
+  color: #878787;
+}
+
+.dark-theme .card {
+  background-color: #222528;
+  color: #d9d9d9;
+}
+
+.dark-theme .list-group-flush>.list-group-item {
+  background-color: #222528;
+  color: #d9d9d9;
+}
+
+.dark-theme .card-advisory {
+  background-color: #272a2d;
+}
+
+.dark-theme .status-box {
+  color: #343434;
+}
+
+.dark-theme .alert-evaluate {
+  color: #ffffff;
+}
