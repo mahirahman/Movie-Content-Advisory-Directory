@@ -107,6 +107,13 @@ p {
   border-radius: inherit !important;
 }
 
+.btn-darkmode {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-style: solid;
+}
+
 .card-title {
   word-wrap: initial;
 }
@@ -218,7 +225,6 @@ p {
   width: 550px;
   white-space: nowrap;
   overflow-y: hidden;
-  margin-top: 5px;
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -227,15 +233,16 @@ p {
 
 .scroll-container-header {
   position: absolute;
+  margin-top: 5px;
   margin-left: 55%;
 }
 
-.div_to_hold_images {
+.img-block {
   display: inline-block;
   overflow: hidden;
 }
 
-.imgwidth {
+.img-width {
   width: 71px;
   height: 106px;
 }

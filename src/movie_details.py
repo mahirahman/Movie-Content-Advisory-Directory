@@ -69,10 +69,10 @@ def format_movie_rating_string(certificate):
         rating_reason = "children 7 and above"
     elif (certificate == "PG" or certificate == "TV-PG" or certificate == "E10+"):
         rating_reason = "children 10 and above"
-    elif (certificate == "PG-13" or certificate == "TV-14" or certificate == "TV-13" or certificate == "T"):
+    elif (certificate == "PG-13" or certificate == "TV-13" or certificate == "T"):
         rating_reason = "children 13 and above"
     elif (certificate == "TV-14"):
-        rating_reason = "children 14 and above"
+        rating_reason = "ages 14 and above"
     elif (certificate == "TV-MA"):
         rating_reason = "mature audiences"
     elif (certificate == "R"):
@@ -91,7 +91,7 @@ def format_movie_rating_string(certificate):
         return f'Rated {certificate}'
     return f'Rated {certificate} for {rating_reason}'
 
-#
+# Converts the total minutes into hour(s) and minute(s) format
 def convert_to_hour_mins(movie_total_mins):
     # Get hours with floor division
     hours = movie_total_mins // 60

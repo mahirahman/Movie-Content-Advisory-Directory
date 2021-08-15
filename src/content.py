@@ -51,7 +51,7 @@ SEARCH_HEADER = div(
                 )
 
 # Dark/Light Mode Toggle Button
-DARK_MODE_SWITCH = button(class_="btn-toggle", style="position: absolute; top: 10px; right: 10px;")(
+DARK_MODE_SWITCH = button(class_="btn-toggle btn-darkmode")(
                     "Toggle Light/Dark Mode"
                 ),
 
@@ -86,8 +86,8 @@ def movie_history_img(session):
     for movie_id in session:
         img_cards.append(
             a(href=f'/advisory/{movie_id}')(
-                div(class_="div_to_hold_images")(
-                    img(class_="imgwidth selector", src=f'{session[movie_id][0]}', alt=f'{session[movie_id][1]} ({session[movie_id][2]})')
+                div(class_="img-block")(
+                    img(class_="img-width selector", src=f'{session[movie_id][0]}', alt=f'{session[movie_id][1]} ({session[movie_id][2]})')
                 )
             )
         )
