@@ -45,11 +45,11 @@ def movies():
     content = html(
         HTML_HEAD_TAG,
         body(
+            SEARCH_HEADER,
+            DARK_MODE_SWITCH,
             div(class_="scroll-container-header")(
                 previous_searched_movies(session)
             ),
-            SEARCH_HEADER,
-            DARK_MODE_SWITCH,
             PAGE_BODY
         )
     )
@@ -94,11 +94,11 @@ def advisory(movie_ID):
 
     content = html(
         HTML_HEAD_TAG,
+        DARK_MODE_SWITCH,
+        SEARCH_HEADER,
         div(class_="scroll-container-header")(
             previous_searched_movies(session)
         ),
-        DARK_MODE_SWITCH,
-        SEARCH_HEADER,
         MOVIE_DETAILS,
         PAGE_ADVISORY
     )

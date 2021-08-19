@@ -51,8 +51,9 @@ SEARCH_HEADER = div(
                 )
 
 # Dark/Light Mode Toggle Button
-DARK_MODE_SWITCH = button(class_="btn-toggle btn-darkmode")(
-                    "Toggle Light/Dark Mode"
+DARK_MODE_SWITCH = button(class_="btn-toggle btn-darkmode light-mode-button")(
+                    span(),
+                    span()
                 ),
 
 # No Movies Error Box
