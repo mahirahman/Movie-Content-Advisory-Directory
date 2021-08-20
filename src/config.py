@@ -4,7 +4,7 @@ import secrets
 TITLE = "Movie Content Advisory Directory"
 
 # API Key generated from https://rapidapi.com/apidojo/api/imdb8
-API_KEY = "bb1ff967f9msh13ca72a9e4167fbp1cec94jsn0f000eed74db"
+API_KEY = "Enter an API Key"
 
 # Favicon file
 FAVICON = "/public/fav/favicon.ico"
