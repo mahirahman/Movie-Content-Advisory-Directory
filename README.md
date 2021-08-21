@@ -45,7 +45,7 @@ History of the titles viewed are stored in session cookies to be viewed in a pre
 
 ### Landing
 
-![Image](/public/img/landing-page.png)
+![Image](/public/img/landing-page.PNG)
 
 ### Searched
 
@@ -53,7 +53,7 @@ History of the titles viewed are stored in session cookies to be viewed in a pre
 
 ### Advisories
 
-![Image](/public/img/advisories-page.png)
+![Image](/public/img/advisories-page.PNG)
 
 * Built With
 
