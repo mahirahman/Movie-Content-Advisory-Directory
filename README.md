@@ -55,7 +55,7 @@ History of the titles viewed are stored in session cookies to be viewed in a pre
 
 ![Image](/public/img/advisories-page.PNG)
 
-* Built With
+## Built With
 
 * [Python 3.7](https://www.python.org) - Programming Language
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/) - Web Framework
