@@ -6,8 +6,17 @@ from src.movie_cards import *
 # Header Tag
 HTML_HEAD_TAG = head(
             meta(charset="utf-8"),
-            meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no"),
+            meta(name="twitter:card", content="summary"),
             title(TITLE),
+            meta(property="og:title", content=TITLE),
+            meta(property="og:site_name", content=TITLE),
+            meta(property="og:url", content=URL),
+            meta(property="og:image", content="/public/img/screenshot.png"),
+            meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no"),
+            meta(name="description", content="Search for content advisories for movies and TV shows."),
+            meta(property="og:description", content="Search for content advisories for movies and TV shows."),
+            meta(name="keywords", content="movie content advisory directory, movie content advisory, parental guide, parental guidance, content advisory, parental, movies, guidance, tv shows, advisory, ratings, clean, filter"),
+            meta(name="author", content="Mahi Rahman"),
             link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"),
             link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"),
             link(rel="stylesheet", href="/public/css/mdb.min.css"),
@@ -30,7 +39,7 @@ LANDING_PAGE_BODY = div(
                             ),
                         ),
                         br(),
-                        p(class_="center")(
+                        p(class_="center previous-searched")(
                             "Previous Searched Titles 🎬"
                         )
                     )
@@ -54,7 +63,7 @@ SEARCH_HEADER = div(
 DARK_MODE_SWITCH = button(class_="btn-toggle btn-darkmode light-mode-button")(
                     span(),
                     span()
-                ),
+                )
 
 # No Movies Error Box
 SEARCH_NOT_FOUND = div(class_="alert")(
@@ -87,9 +96,9 @@ def movie_history_img(session):
     for movie_id in session:
         img_cards.append(
             a(href=f'/advisory/{movie_id}')(
-                div(class_="img-block")(
+                div(id="img-exist", class_="img-block")(
                     img(class_="img-width selector", src=f'{session[movie_id][0]}', alt=f'{session[movie_id][1]} ({session[movie_id][2]})')
-                )
+                )   
             )
         )
     return img_cards

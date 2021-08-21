@@ -3,6 +3,9 @@ import secrets
 # Title of the web app
 TITLE = "Movie Content Advisory Directory"
 
+# URL of the website where is it being hosted on
+URL = "https://moviecontentadvisory.herokuapp.com"
+
 # API Key generated from https://rapidapi.com/apidojo/api/imdb8
 API_KEY = "Enter an API Key"
 

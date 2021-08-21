@@ -8,3 +8,20 @@ function validateForm() {
       return false;
     }
 }
+
+// Check for element with ID img-exists in scroll-container
+// If element exists then display "Previous Searched Titles" text
+
+window.onload = function(){
+  var element = document.getElementById("img-exist");
+  //If it isn't "undefined" and it isn't "null", then it exists.
+  if (typeof(element) != 'undefined' && element != null){
+    element = document.querySelector('.previous-searched');
+    element.style.visibility = 'visible';
+  }
+  else {
+    element = document.querySelector('.previous-searched');
+    element.style.visibility = 'hidden';
+  }
+};
+

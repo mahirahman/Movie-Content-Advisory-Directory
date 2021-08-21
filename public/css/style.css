@@ -34,6 +34,10 @@ p {
   color: #0f0f0f;
 }
 
+a:hover {
+  color: #efff95;
+}
+
 .logo {
   margin-top: 15%;
 }
@@ -228,7 +232,7 @@ p {
 .scroll-container-header {
   position: absolute;
   top: 0px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 55%;
 }
 

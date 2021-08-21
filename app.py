@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = config.SESSION_KEY
 # Landing Page
 @app.route('/')
 def main():
-    content = html(
+    content = html(lang="en")(
         HTML_HEAD_TAG,
         body(
             DARK_MODE_SWITCH,
@@ -42,7 +42,7 @@ def movies():
                     )
 
     # Constuct search page
-    content = html(
+    content = html(lang="en")(
         HTML_HEAD_TAG,
         body(
             SEARCH_HEADER,
@@ -92,7 +92,7 @@ def advisory(movie_ID):
         PAGE_ADVISORY = construct_advisory(html_nudity_list, html_violence_list, html_profanity_list, html_alcohol_list, html_frightening_list, 
                                             nudity_status, violence_status, profanity_status, alcohol_status, frightening_status)
 
-    content = html(
+    content = html(lang="en")(
         HTML_HEAD_TAG,
         DARK_MODE_SWITCH,
         SEARCH_HEADER,
