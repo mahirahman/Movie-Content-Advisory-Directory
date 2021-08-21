@@ -11,7 +11,7 @@ HTML_HEAD_TAG = head(
             meta(property="og:title", content=TITLE),
             meta(property="og:site_name", content=TITLE),
             meta(property="og:url", content=URL),
-            meta(property="og:image", content="/public/img/screenshot.png"),
+            meta(property="og:image", content="/public/img/movies-page.png"),
             meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no"),
             meta(name="description", content="Search for content advisories for movies and TV shows."),
             meta(property="og:description", content="Search for content advisories for movies and TV shows."),
