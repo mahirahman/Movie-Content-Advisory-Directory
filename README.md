@@ -1,4 +1,5 @@
 # Movie-Content-Advisory-Directory 🎬
+
 ![Image](/public/img/logo.svg)
 
 Modern and mobile friendly web application that allows users to search for content advisories for movies and TV shows. 🍿
