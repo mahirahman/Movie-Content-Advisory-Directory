@@ -152,6 +152,10 @@ a:hover {
   align-self: start;
 }
 
+.noVotes {
+  display: none;
+}
+
 .mild {
   background-color: #c5e197;
 }
