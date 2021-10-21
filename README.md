@@ -62,7 +62,7 @@ History of the titles viewed are stored in session cookies to be viewed in a pre
 * [Requests](https://requests.readthedocs.io) - HTTP Library
 * [Gunicorn](https://gunicorn.org) - WSGI HTTP Server
 * [Material Design Bootstrap](https://mdbootstrap.com) - CSS Framework
-* [RapidAPI's IMDb API](https://rapidapi.com/apidojo/api/IMDb8/) - IMDb API
+* [RapidAPI's IMDb API](https://rapidapi.com/apidojo/api/imdb8/) - IMDb API
 
 ## License
 
