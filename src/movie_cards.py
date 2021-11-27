@@ -62,4 +62,6 @@ def format_movie_type_string(movie_type):
         movie_type = "TV Episode"
     elif (movie_type == "video"):
         movie_type = "Video"
+    elif (movie_type == "podcastEpisode"):
+        movie_type = "Podcast Episode"
     return movie_type
