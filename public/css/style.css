@@ -29,13 +29,13 @@ input, input:focus {
   color: white;
 }
 
+.alert-text:hover {
+  color: #efff95;
+}
+
 p {
   margin-top: inherit !important;
   color: #0f0f0f;
-}
-
-a:hover {
-  color: #efff95;
 }
 
 .logo {
