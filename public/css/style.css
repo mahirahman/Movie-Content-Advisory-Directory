@@ -26,10 +26,14 @@ input, input:focus {
 }
 
 .alert-text {
-  color: white;
+  color: #fff;
 }
 
-.alert-text:hover {
+.alert-link {
+  font-weight: 400 !important;
+}
+
+.alert-link:hover {
   color: #efff95;
 }
 
@@ -101,6 +105,11 @@ p {
   width: 11rem;
   margin: 10px;
   text-align: center;
+  transition: all 200ms ease-out;
+}
+
+.movies-card:hover {
+   box-shadow: 0px 0px 23px;
 }
 
 .card-img-top {

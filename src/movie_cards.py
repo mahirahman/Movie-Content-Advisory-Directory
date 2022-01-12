@@ -17,7 +17,7 @@ def get_movie_dict(movie_ID, api_key):
     for data in info['results']:
 
         # Exclude anything such as actors, filming locations, directors, tv episodes, unreleased etc..
-        if (data.get("titleType") != None and data.get("year") != None and data["titleType"]!= "tvEpisode"):
+        if (data.get("titleType") != None and data.get("year") != None and data["titleType"]!= "tvEpisode" and data["titleType"]!= "podcastEpisode"):
             
             # ID
             id = data['id'][7:-1]
@@ -58,10 +58,8 @@ def format_movie_type_string(movie_type):
         movie_type = "TV Mini Series"
     elif (movie_type == "short"):
         movie_type = "Short"
-    elif (movie_type == "tvEpisode"):
-        movie_type = "TV Episode"
     elif (movie_type == "video"):
         movie_type = "Video"
-    elif (movie_type == "podcastEpisode"):
-        movie_type = "Podcast Episode"
+    elif (movie_type == "tvSpecial"):
+        movie_type = "TV Special"
     return movie_type

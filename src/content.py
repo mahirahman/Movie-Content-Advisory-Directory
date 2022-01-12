@@ -78,7 +78,7 @@ def no_advisories(movie_ID):
             p(class_="alert-text")(
                 "Uh Oh - No Content Advisories Found 🤷"  
             ),
-            a(href=f'https://www.imdb.com/registration/signin?u=https%3A%2F%2Fwww.imdb.com%2Ftitle%2F{movie_ID}%2Fparentalguide', class_="alert-text", target="_blank")(
+            a(href=f'https://www.imdb.com/registration/signin?u=https%3A%2F%2Fwww.imdb.com%2Ftitle%2F{movie_ID}%2Fparentalguide', class_="alert-text alert-link", target="_blank")(
                 "Be the first to evaluate this"
             )
     )
@@ -109,7 +109,7 @@ def construct_movie_cards(movie_list):
     movie_cards = []
     for movie_id in movie_list:
         movie_cards.append(
-            div(class_="card")(
+            div(class_="card movies-card")(
                 a(href=url_for('advisory', movie_ID=movie_id))(
                     img(src=f"{movie_list[movie_id]['img']}", class_="card-img-top selector", alt=f"{movie_list[movie_id]['title']} ({movie_list[movie_id]['year']})"),
                     div(class_="card-body")(
