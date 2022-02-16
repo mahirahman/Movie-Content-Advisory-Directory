@@ -62,4 +62,6 @@ def format_movie_type_string(movie_type):
         movie_type = "Video"
     elif (movie_type == "tvSpecial"):
         movie_type = "TV Special"
+    elif (movie_type == "musicVideo"):
+        movie_type = "Music Video"
     return movie_type
