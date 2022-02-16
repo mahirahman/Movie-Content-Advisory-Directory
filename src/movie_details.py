@@ -103,6 +103,8 @@ def convert_to_hour_mins(movie_total_mins):
         movie_time_string = f'{hours} hour'
     elif (hours == 1 and minutes == 1):
         movie_time_string = f'{hours} hour {minutes} min'
+    elif (hours == 1 and minutes > 1):
+        movie_time_string = f'{hours} hour {minutes} mins'
     elif (hours > 1 and minutes == 1):
         movie_time_string = f'{hours} hours {minutes} min'
     elif (hours > 1 and minutes == 0):
