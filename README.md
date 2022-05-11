@@ -6,19 +6,19 @@ Modern and mobile friendly web application that allows users to search for conte
 
 Live Deployment: [movie-content-advisory.herokuapp.com](https://movie-content-advisory.herokuapp.com)
 
-[![Made with Python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![Made with Python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org)
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See below for prerequisite libraries and notes on how to deploy the project on a live system.
 
-`git clone https://github.com/mahirahman/Movie-Content-Advisory-Directory`
+`git clone https://github.com/mahirahman/Movie-Content-Advisory-Directory.git`
 
 To run the application locally:
 
 1. CD to the directory of the project
 2. Install the requirements by using the command `pip install -r requirements.txt`
-3. Head over to [RapidAPI's IMDb API](https://rapidapi.com/apidojo/api/IMDb8/) and subscribe to get an API Key
+3. Head over to [RapidAPI's IMDb API](https://rapidapi.com/apidojo/api/IMDb8) and subscribe to get an API Key
 4. Open `/src/config.py` and replace the value of `API_KEY` with the API Key from RapidAPI
 5. Head over to the root directory of the project and run `app.py`
 6. Enter `127.0.0.1:5000` into a browser to access the web app
@@ -58,11 +58,11 @@ History of the titles viewed are stored in session cookies to be viewed in a pre
 ## Built With
 
 * [Python 3.7](https://www.python.org) - Programming Language
-* [Flask](https://flask.palletsprojects.com/en/2.0.x/) - Web Framework
+* [Flask](https://flask.palletsprojects.com/en/2.0.x) - Web Framework
 * [Requests](https://requests.readthedocs.io) - HTTP Library
 * [Gunicorn](https://gunicorn.org) - WSGI HTTP Server
 * [Material Design Bootstrap](https://mdbootstrap.com) - CSS Framework
-* [RapidAPI's IMDb API](https://rapidapi.com/apidojo/api/imdb8/) - IMDb API
+* [RapidAPI's IMDb API](https://rapidapi.com/apidojo/api/imdb8) - IMDb API
 
 ## License
 
