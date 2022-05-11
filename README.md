@@ -2,7 +2,7 @@
 
 ![Image](/public/img/logo.svg)
 
-Modern and mobile friendly web application that allows users to search for content advisories for movies and TV shows. 🍿
+Modern and mobile friendly web application that allows users to search for content advisories for movies and TV shows 🍿
 
 Live Deployment: [movie-content-advisory.herokuapp.com](https://movie-content-advisory.herokuapp.com)
 
