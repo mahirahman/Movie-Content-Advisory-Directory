@@ -19,7 +19,7 @@ To run the application locally:
 1. CD to the directory of the project
 2. Install the requirements by using the command `pip install -r requirements.txt`
 3. Head over to [RapidAPI's IMDb API](https://rapidapi.com/apidojo/api/IMDb8) and subscribe to get an API Key
-4. Open `/src/.env` and assign `API_KEY` to the the API Key from RapidAPI
+4. Create a `.env` file in `/src` and assign `API_KEY` to the the API Key from RapidAPI
 5. Head over to the root directory of the project and run `app.py`
 6. Enter `127.0.0.1:5000` into a browser to access the web app
 
