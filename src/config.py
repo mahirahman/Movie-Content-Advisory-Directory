@@ -1,4 +1,8 @@
+from dotenv import load_dotenv
 import secrets
+import os
+
+load_dotenv()
 
 # Title of the web app
 TITLE = "Movie Content Advisory Directory"
@@ -7,7 +11,7 @@ TITLE = "Movie Content Advisory Directory"
 URL = "https://movie-content-advisory.herokuapp.com"
 
 # API Key generated from https://rapidapi.com/apidojo/api/imdb8
-API_KEY = "Enter an API Key"
+API_KEY = os.environ['API_KEY']
 
 # Favicon file
 FAVICON = "/public/fav/favicon.ico"
