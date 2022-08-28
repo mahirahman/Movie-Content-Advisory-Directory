@@ -22,5 +22,6 @@ LOGO = "/public/img/logo.svg"
 # 64 BYTE User secret
 SESSION_KEY = secrets.token_urlsafe(64)
 
-# Set to a boolean value to enable debug mode when running
-DEBUG = True
+# Set to a boolean value to enable production mode
+# If you want to run the app locally, set this to False
+PRODUCTION = True
