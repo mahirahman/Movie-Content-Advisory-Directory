@@ -4,7 +4,7 @@
 
 Modern and mobile friendly web application that allows users to search for content advisories for movies and TV shows 🍿
 
-Live Deployment: [movie-content-advisory.herokuapp.com](https://movie-content-advisory.herokuapp.com)
+Live Deployment: [movie-content-advisory-directory.vercel.app](https://movie-content-advisory-directory.vercel.app)
 
 [![Made with Python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org)
 
