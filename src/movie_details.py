@@ -12,7 +12,7 @@ def get_movie_info(movie_ID, api_key):
         info = get_movie_details.json()
 
         # Default values
-        movie_image_path = "/public/img/null_image.png"
+        movie_image_path = "/public/img/null_image.webp"
         movie_time_string = "No Time Available"
         certificate = "No Rating Certificate"
         movie_rating = "Not Yet Rated"

@@ -47,15 +47,15 @@ History of the titles viewed are stored in session cookies to be viewed in a pre
 
 ### Landing
 
-![Image](/public/img/landing-page.PNG)
+![Image](/public/img/landing-page.webp)
 
 ### Searched
 
-![Image](/public/img/movies-page.png)
+![Image](/public/img/movies-page.webp)
 
 ### Advisories
 
-![Image](/public/img/advisories-page.PNG)
+![Image](/public/img/advisories-page.webp)
 
 ## Built With
 

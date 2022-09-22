@@ -37,7 +37,7 @@ def get_movie_dict(movie_ID, api_key):
 
             # Poster/Image of the movie
             if (data.get('image') == None):
-                movie_image_path = "/public/img/null_image.png"
+                movie_image_path = "/public/img/null_image.webp"
             else:
                 movie_image_path = data['image']["url"]
             movies_dict[id]['img'] = movie_image_path

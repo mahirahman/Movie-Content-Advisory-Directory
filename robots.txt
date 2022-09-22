@@ -8,6 +8,6 @@ User-agent: *
 Disallow: /public/fav/
 
 User-agent: *
-Disallow: /public/img/null_image.png
+Disallow: /public/img/null_image.webp
 
 Sitemap: /sitemap.xml
