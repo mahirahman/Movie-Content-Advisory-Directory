@@ -24,4 +24,4 @@ SESSION_KEY = secrets.token_urlsafe(64)
 
 # Set to a boolean value to enable production mode
 # If you want to run the app locally, set this to False
-PRODUCTION = True
+PRODUCTION = False

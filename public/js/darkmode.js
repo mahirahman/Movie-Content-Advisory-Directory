@@ -1,26 +1,21 @@
-// Enable dark/light mode from button toggling
-// Loads script after HTML DOM is loaded
-
-document.addEventListener("DOMContentLoaded", function(){
-
+document.addEventListener("DOMContentLoaded", function () {
   const btn = document.querySelector(".btn-toggle");
   const currentTheme = localStorage.getItem("theme");
 
-  if (currentTheme == "dark") {
+  if (currentTheme === "dark") {
     document.body.classList.add("dark-theme");
   }
-  
-  btn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-theme");
-  
-    let theme = "light";
-    if (document.body.classList.contains("dark-theme")) {
-      theme = "dark";
-    }
-    localStorage.setItem("theme", theme);
-  });
+
+  btn.addEventListener("click", toggleDarkTheme);
 });
 
-function LightDark() {
+function toggleDarkTheme() {
+  document.body.classList.toggle("dark-theme");
+
+  const theme = document.body.classList.contains("dark-theme") ? "dark" : "light";
+  localStorage.setItem("theme", theme);
+}
+
+function setLightDarkButtonText() {
   document.getElementById("toggle").innerHTML = "Light-mode";
 }

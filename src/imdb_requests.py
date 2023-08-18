@@ -4,42 +4,32 @@ def request_headers(api_key):
     headers = {
         'x-rapidapi-key': api_key,
         'x-rapidapi-host': "imdb8.p.rapidapi.com"
-        }
+    }
     return headers
 
-# Find title by whatever you are familiar with, such as : name of title, album, song, etc…
-def get_movies_dict_request(movie_ID, api_key):
-
-    # Find list of movies based on search
-    url = "https://imdb8.p.rapidapi.com/title/find"
-    querystring = {"q":movie_ID}
+def make_request(url, querystring, api_key):
     try:
-        get_all_movies = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
-    except requests.exceptions.ConnectionError:
+        response = requests.get(url, headers=request_headers(api_key), params=querystring)
+        response.raise_for_status()
+        return response
+    except requests.exceptions.RequestException as e:
+        print(f"Request error: {e}")
         return None
-
-    return get_all_movies
+    
+# Find title by whatever you are familiar with, such as: name of title, album, song, etc…
+def get_movies_dict_request(movie_ID, api_key):
+    url = "https://imdb8.p.rapidapi.com/title/find"
+    querystring = {"q": movie_ID}
+    return make_request(url, querystring, api_key)
 
 # Get overview information of the title
 def get_movie_details_request(movie_ID, api_key):
-
     url = "https://imdb8.p.rapidapi.com/title/get-overview-details"
-    querystring = {"tconst":movie_ID,"currentCountry":"US"}
-    try:
-        get_movie_details = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
-    except requests.exceptions.ConnectionError:
-        return None
-
-    return get_movie_details
+    querystring = {"tconst": movie_ID, "currentCountry": "US"}
+    return make_request(url, querystring, api_key)
 
 # Get parent guide information for specific movie
 def get_movie_advisory_request(movie_ID, api_key):
-
     url = "https://imdb8.p.rapidapi.com/title/get-parental-guide"
-    querystring = {"tconst":movie_ID}
-    try:
-        get_advisory = requests.request("GET", url, headers=request_headers(api_key), params=querystring)
-    except requests.exceptions.ConnectionError:
-        return None
-
-    return get_advisory
+    querystring = {"tconst": movie_ID}
+    return make_request(url, querystring, api_key)

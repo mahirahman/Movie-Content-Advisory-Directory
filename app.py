@@ -1,54 +1,59 @@
-from flask import Flask, request, session
 from pyhtml import *
+from flask import Flask, request, session
 import src.config as config
-from src.content import *
-from src.movie_cards import *
-from src.movie_details import *
-from src.movie_advisory import *
+from src.movie_cards import get_movie_dict
+from src.movie_details import get_movie_info
+from src.movie_advisory import (
+    nudity_advisory, violence_advisory, profanity_advisory,
+    alcohol_advisory, frightening_advisory,
+    nudity_advisory_status, violence_advisory_status,
+    profanity_advisory_status, alcohol_advisory_status,
+    frightening_advisory_status, get_content_advisory_dict
+)
+from src.content import (
+    construct_head, construct_landing_page_body,
+    construct_search_header, construct_dark_mode_switch,
+    construct_previous_searched_movies, construct_movie_cards,
+    construct_advisory_text, construct_advisory,
+    construct_search_not_found, construct_no_advisories
+)
 
-app = Flask(__name__, static_url_path = '/public', static_folder = 'public')
+app = Flask(__name__, static_url_path='/public', static_folder='public')
 app.config['SECRET_KEY'] = config.SESSION_KEY
 
 # Landing Page
 @app.route('/')
 def main():
     content = html(lang="en")(
-        HTML_HEAD_TAG,
+        construct_head(),
         body(
-            DARK_MODE_SWITCH,
-            LANDING_PAGE_BODY,
-            previous_searched_movies(session)
+            construct_dark_mode_switch(),
+            construct_landing_page_body(session),
+            construct_previous_searched_movies(session)
         )
     )
-
     return str(content)
 
 # Movies Page
 @app.route('/movies', methods=["POST"])
 def movies():
-    # String passed from landing page input
     movie = request.form['movie_title']
-
-    # Dictionary of movies based on input
     movies_dict = get_movie_dict(movie, config.API_KEY)
 
-    # No movies found or not a valid search
-    if (movies_dict == False or movies_dict == {}):
-        PAGE_BODY = SEARCH_NOT_FOUND
+    if not movies_dict or movies_dict == {}:
+        PAGE_BODY = construct_search_not_found()
     else:
-        # Generate the movie cards
         PAGE_BODY = div(class_="movie-list-wrap")(
-                        construct_movie_cards(movies_dict)
-                    )
+            construct_movie_cards(movies_dict)
+        )
 
-    # Constuct search page
     content = html(lang="en")(
-        HTML_HEAD_TAG,
+        construct_head(),
         body(
-            SEARCH_HEADER,
-            DARK_MODE_SWITCH,
+            construct_search_header(),
+            construct_dark_mode_switch(),
             div(class_="scroll-container-header")(
-                previous_searched_movies(session)
+                construct_previous_searched_movies(session)
             ),
             PAGE_BODY
         )
@@ -59,50 +64,40 @@ def movies():
 @app.route('/advisory/<movie_ID>')
 def advisory(movie_ID):
     (MOVIE_DETAILS, movie_title, movie_year, movie_img_path) = get_movie_info(movie_ID, config.API_KEY)
-    # Add movie_ID and movie poster to session dictionary
+
     if movie_ID not in session:
         session[movie_ID] = movie_img_path, movie_title, movie_year
 
-    advisory_data = get_content_advisory_dict(movie_ID, API_KEY)
-    if (advisory_data == False):
-        PAGE_ADVISORY = no_advisories(movie_ID)
+    advisory_data = get_content_advisory_dict(movie_ID, config.API_KEY)
+    
+    if not advisory_data:
+        PAGE_ADVISORY = construct_no_advisories(movie_ID)
     else:
-        # Get the advisory string texts in an array
-        nudity_list = nudity_advisory(advisory_data)
-        violence_list = violence_advisory(advisory_data)
-        profanity_list = profanity_advisory(advisory_data)
-        alcohol_list = alcohol_advisory(advisory_data)
-        frightening_list = frightening_advisory(advisory_data)
-
-        # Get the advisory status of each
-        nudity_status = nudity_advisory_status(advisory_data)
-        violence_status = violence_advisory_status(advisory_data)
-        profanity_status = profanity_advisory_status(advisory_data)
-        alcohol_status = alcohol_advisory_status(advisory_data)
-        frightening_status = frightening_advisory_status(advisory_data)
-
-        # Get the HTML texts in an array
-        html_nudity_list = construct_advisory_text(nudity_list)
-        html_violence_list = construct_advisory_text(violence_list) 
-        html_profanity_list = construct_advisory_text(profanity_list)
-        html_alcohol_list = construct_advisory_text(alcohol_list)
-        html_frightening_list = construct_advisory_text(frightening_list)
-
         # Generate advisory card
-        PAGE_ADVISORY = construct_advisory(html_nudity_list, html_violence_list, html_profanity_list, html_alcohol_list, html_frightening_list, 
-                                            nudity_status, violence_status, profanity_status, alcohol_status, frightening_status)
+        PAGE_ADVISORY = construct_advisory(
+            construct_advisory_text(nudity_advisory(advisory_data)),
+            construct_advisory_text(violence_advisory(advisory_data)),
+            construct_advisory_text(profanity_advisory(advisory_data)),
+            construct_advisory_text(alcohol_advisory(advisory_data)),
+            construct_advisory_text(frightening_advisory(advisory_data)),
+            nudity_advisory_status(advisory_data),
+            violence_advisory_status(advisory_data),
+            profanity_advisory_status(advisory_data),
+            alcohol_advisory_status(advisory_data),
+            frightening_advisory_status(advisory_data)
+        )
 
     content = html(lang="en")(
-        HTML_HEAD_TAG,
-        DARK_MODE_SWITCH,
-        SEARCH_HEADER,
+        construct_head(),
+        construct_dark_mode_switch(),
+        construct_search_header(),
         div(class_="scroll-container-header")(
-            previous_searched_movies(session)
+            construct_previous_searched_movies(session)
         ),
         MOVIE_DETAILS,
         PAGE_ADVISORY
     )
     return str(content)
 
-if not PRODUCTION and __name__ == "__main__":
+if not config.PRODUCTION and __name__ == "__main__":
     app.run(debug=True)
