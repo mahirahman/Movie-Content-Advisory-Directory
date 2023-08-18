@@ -36,55 +36,41 @@ def construct_landing_page_body(session):
         br(),
         form(name="movie_input", action="/movies", class_="form-landing", onsubmit="return validateForm()")(
             input_(type="text", name="movie_title", placeholder="Search", class_="searchbox", autocomplete="off"),
-            button(type="Submit", value="Search", class_="btn btn-primary")(
-                i(class_="fas fa-search")
-            ),
+            button(type="Submit", value="Search", class_="btn btn-primary")(i(class_="fas fa-search")),
         ),
         br(),
-        p(class_="center previous-searched")(
-            "Previous Searched Titles 🎬"
-        ) if bool(session) else None
+        p(class_="center previous-searched")("Previous Searched Titles 🎬") if bool(session) else None
     )
 
 # Header in Movies Page
 def construct_search_header():
     return div(
-                    div(class_="header-flex")(
-                        a(href="/")(
-                            img(src=LOGO, alt="MCAD Logo", class_ ="logo-header selector filter"),
-                        ),
-                        form(name="movie_input", action="/movies", class_="form-header", onsubmit="return validateForm()")(
-                            input_(type="text", name="movie_title", placeholder="Search", class_="searchbox", autocomplete="off"),
-                            button(type="Submit", value="Search", class_="btn btn-primary")(
-                                i(class_="fas fa-search")
-                            ),
-                        ),
-                    ),
-                )
+        div(class_="header-flex")(
+            a(href="/")(img(src=LOGO, alt="MCAD Logo", class_ ="logo-header selector filter"),),
+            form(name="movie_input", action="/movies", class_="form-header", onsubmit="return validateForm()")(
+                input_(type="text", name="movie_title", placeholder="Search", class_="searchbox", autocomplete="off"),
+                button(type="Submit", value="Search", class_="btn btn-primary")(i(class_="fas fa-search")),
+            ),
+        ),
+    )
 
 # Dark/Light Mode Toggle Button
-def construct_dark_mode_switch(): return button(class_="btn-toggle btn-darkmode light-mode-button")(
-                    span(),
-                    span()
-                )
+def construct_dark_mode_switch():
+    return button(class_="btn-toggle btn-darkmode light-mode-button")(span(),span())
 
 # No Movies Error Box
 def construct_search_not_found():
     return div(class_="alert")(
-                    p(class_="alert-text")(
-                        "Uh Oh - No Title Found 🤷"
-                    )
-                )
+        p(class_="alert-text")("Uh Oh - No Title Found 🤷")
+    )
 
 # No Advisories Available Error Box
 def construct_no_advisories(movie_id):
     return div(class_="alert")(
-            p(class_="alert-text")(
-                "Uh Oh - No Content Advisories Found 🤷"  
-            ),
-            a(href=f'https://www.imdb.com/registration/signin?u=https%3A%2F%2Fwww.imdb.com%2Ftitle%2F{movie_id}%2Fparentalguide', class_="alert-text alert-link", target="_blank")(
-                "Be the first to evaluate this"
-            )
+        p(class_="alert-text")(
+            "Uh Oh - No Content Advisories Found 🤷"  
+        ),
+        a(href=f'https://www.imdb.com/registration/signin?u=https%3A%2F%2Fwww.imdb.com%2Ftitle%2F{movie_id}%2Fparentalguide', class_="alert-text alert-link", target="_blank")("Be the first to evaluate this")
     )
 
 # Image container of previously searched movies
@@ -124,30 +110,18 @@ def construct_movie_cards(movie_list):
 # Generates Movie Details Card
 def construct_movie_details_card(title, year, title_img, rating, type, running_time, certificate, plot):
     return div(class_="card card-details")(
-                        img(src=title_img, class_="card-img-top selector img-details", alt=f'{title} ({year})'),
-                        div(class_="card-body card-body-details")(
-                            h5(class_="card-title")(
-                                title
-                            ),
-                            h5(class_="card-title")(
-                                f'({year})'
-                            ),
-                            p(class_="card-subtext")(
-                                f'{rating}'
-                            )
-                        ),
-                        div(class_="list-group list-group-flush")(
-                            h5(class_="list-group-item")(
-                                f'{type} - {running_time}'
-                            ),
-                            h5(class_="list-group-item")(
-                                certificate
-                            ),
-                            h5(class_="list-group-item")(
-                                plot
-                            )
-                        )
-                    )
+        img(src=title_img, class_="card-img-top selector img-details", alt=f'{title} ({year})'),
+        div(class_="card-body card-body-details")(
+            h5(class_="card-title")(title),
+            h5(class_="card-title")(f'({year})'),
+            p(class_="card-subtext")(f'{rating}')
+        ),
+        div(class_="list-group list-group-flush")(
+            h5(class_="list-group-item")(f'{type} - {running_time}'),
+            h5(class_="list-group-item")(certificate),
+            h5(class_="list-group-item")(plot)
+        )
+    )
 
 # Generates the advisory text into a list
 def construct_advisory_text(html_list):
@@ -185,7 +159,7 @@ def construct_advisory(html_nudity_list, html_violence_list, html_profanity_list
     ]
     
     advisory_cards = []
-    
+
     for title, status, html_list in advisory_sections:
         advisory_cards.append(
             (
