@@ -49,7 +49,7 @@ History of the titles viewed are stored in session cookies to be viewed in a pre
 
 ![Image](/public/img/landing-page.webp)
 
-### Searched
+### Search Results
 
 ![Image](/public/img/movies-page.webp)
 
