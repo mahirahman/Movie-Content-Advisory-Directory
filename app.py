@@ -12,10 +12,10 @@ from src.movie_advisory import (
 )
 from src.content import (
     construct_head, construct_landing_page_body,
-    construct_search_header, construct_dark_mode_switch,
-    construct_previous_searched_movies, construct_movie_cards,
-    construct_advisory_text, construct_advisory,
-    construct_search_not_found, construct_no_advisories
+    construct_search_header, construct_previous_searched_movies,
+    construct_movie_cards, construct_advisory_text,
+    construct_advisory, construct_search_not_found,
+    construct_no_advisories
 )
 
 app = Flask(__name__, static_url_path='/public', static_folder='public')
@@ -27,7 +27,6 @@ def main():
     content = html(lang="en")(
         construct_head(),
         body(
-            construct_dark_mode_switch(),
             construct_landing_page_body(session),
             construct_previous_searched_movies(session)
         )
@@ -51,7 +50,6 @@ def movies():
         construct_head(),
         body(
             construct_search_header(),
-            construct_dark_mode_switch(),
             div(class_="scroll-container-header")(
                 construct_previous_searched_movies(session)
             ),
@@ -89,7 +87,6 @@ def advisory(movie_ID):
 
     content = html(lang="en")(
         construct_head(),
-        construct_dark_mode_switch(),
         construct_search_header(),
         div(class_="scroll-container-header")(
             construct_previous_searched_movies(session)

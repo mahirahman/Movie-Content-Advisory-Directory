@@ -1,6 +1,5 @@
 body {
-	transition: background 0.2s linear;
-	background-color: rgb(225, 215, 255);
+	background-color: #16181a;
 }
 
 .center {
@@ -8,6 +7,10 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+
+.search-title {
+	color: #6687be !important;
 }
 
 input,
@@ -39,8 +42,7 @@ input:focus {
 }
 
 p {
-	margin-top: inherit !important;
-	color: #0f0f0f;
+	color: #ffffff;
 }
 
 .logo {
@@ -75,11 +77,12 @@ p {
 	line-height: 34px;
 	padding: 1px 10px;
 	width: 30%;
-	background-color: #f0f0f0;
+	color: #ffffff;
+	background-color: #222222;
 }
 
 .searchbox:focus {
-	box-shadow: inset 0 0 0 1.5pt #2275ff;
+	box-shadow: inset 0 0 0 1.5pt #1a56ba;
 }
 
 .searchbox-header {
@@ -102,6 +105,8 @@ p {
 }
 
 .card {
+	background-color: #222528;
+	color: #000000;
 	width: 11rem;
 	margin: 10px;
 	text-align: center;
@@ -122,6 +127,7 @@ p {
 }
 
 .card-title {
+	color: #d9d9d9;
 	word-wrap: initial;
 }
 
@@ -129,6 +135,8 @@ p {
 	border-bottom-width: 0;
 	border-top-width: 1px;
 	border-top-color: #bdbdbd;
+	background-color: #222528;
+	color: #d9d9d9;
 	font-size: 15px;
 	font-weight: 400;
 }
@@ -193,7 +201,7 @@ p {
 }
 
 .card-advisory {
-	background: #f6f6f5;
+	background-color: #272a2d;
 	width: 97%;
 	align-self: center;
 	padding: 10px !important;
@@ -257,57 +265,6 @@ p {
 .img-width {
 	width: 71px;
 	height: 106px;
-}
-
-body.dark-theme .light-mode-button span:nth-child(1) {
-	background-color: #ced4e2;
-	color: #141516;
-}
-
-body.dark-theme .light-mode-button span:nth-child(2) {
-	left: 34px;
-	background-color: #141516;
-}
-
-.light-mode-button {
-	background: 0;
-	border: 0;
-	box-sizing: border-box;
-	cursor: pointer;
-	width: 65px;
-	height: 28px;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	border: 1px solid rgba(255, 255, 255, 0);
-}
-
-.light-mode-button:focus {
-	outline: none;
-}
-
-.light-mode-button span:nth-child(1) {
-	position: absolute;
-	top: 0;
-	left: 0px;
-	width: 60px;
-	height: 28px;
-	border-radius: 20px;
-	background-color: #d6d7db;
-	box-shadow: inset 1px 1px 3px 0 rgb(0 0 0 / 40%);
-	transition: .3s;
-}
-
-.light-mode-button span:nth-child(2) {
-	position: absolute;
-	top: 3px;
-	left: 5px;
-	width: 22px;
-	height: 22px;
-	background-color: #fff;
-	border-radius: 50%;
-	box-shadow: 1px 1px 2px 0 rgb(0 0 0 / 40%);
-	transition: .3s;
 }
 
 /* Small and Mobile Devices */

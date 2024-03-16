@@ -22,11 +22,9 @@ def construct_head():
         link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"),
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.css"),
         link(rel="stylesheet", href="/public/css/style.css"),
-        link(rel="stylesheet", href="/public/css/style-dark.css"),
         link(rel="icon", href= FAVICON),
         script(src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.js"),
         script(src="/public/js/error.js"),
-        script(src="/public/js/darkmode.js"),
     )
 
 # Main Page
@@ -54,23 +52,16 @@ def construct_search_header():
         ),
     )
 
-# Dark/Light Mode Toggle Button
-def construct_dark_mode_switch():
-    return button(class_="btn-toggle btn-darkmode light-mode-button")(span(),span())
-
 # No Movies Error Box
 def construct_search_not_found():
     return div(class_="alert")(
-        p(class_="alert-text")("Uh Oh - No Title Found 🤷")
+        p("Uh Oh - No Title Found 🤷")
     )
 
 # No Advisories Available Error Box
 def construct_no_advisories(movie_id):
     return div(class_="alert")(
-        p(class_="alert-text")(
-            "Uh Oh - No Content Advisories Found 🤷"  
-        ),
-        a(href=f'https://www.imdb.com/registration/signin?u=https%3A%2F%2Fwww.imdb.com%2Ftitle%2F{movie_id}%2Fparentalguide', class_="alert-text alert-link", target="_blank")("Be the first to evaluate this")
+        p("Uh Oh - No Content Advisories Found 🤷")
     )
 
 # Image container of previously searched movies
