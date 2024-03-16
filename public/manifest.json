@@ -11,22 +11,16 @@
     "theme_color": "#16181a",
     "icons": [
         {
-            "src": "/public/fav/android-chrome-192x192.png",
-            "type": "image/png",
-            "sizes": "192x192",
-            "purpose": "any"
-        },
-        {
-            "src": "/public/fav/android-chrome-512x512.png",
-            "type": "image/png",
-            "sizes": "512x512",
-            "purpose": "any"
-        },
-        {
-            "src": "/public/fav/maskable-512x512.png",
+            "src": "/public/fav/icon_512x512_maskable.png",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "maskable"
+        },
+        {
+            "src": "/public/fav/icon_512x512_rounded.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
         }
     ]
 }
