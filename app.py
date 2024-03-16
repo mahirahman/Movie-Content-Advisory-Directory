@@ -15,7 +15,7 @@ from src.content import (
     construct_search_header, construct_previous_searched_movies,
     construct_movie_cards, construct_advisory_text,
     construct_advisory, construct_search_not_found,
-    construct_no_advisories
+    construct_no_advisories, construct_scroll_to_up
 )
 
 app = Flask(__name__, static_url_path='/public', static_folder='public')
@@ -53,7 +53,8 @@ def movies():
             div(class_="scroll-container-header")(
                 construct_previous_searched_movies(session)
             ),
-            PAGE_BODY
+            PAGE_BODY,
+            construct_scroll_to_up()
         )
     )
     return str(content)
@@ -92,7 +93,8 @@ def advisory(movie_ID):
             construct_previous_searched_movies(session)
         ),
         MOVIE_DETAILS,
-        PAGE_ADVISORY
+        PAGE_ADVISORY,
+        construct_scroll_to_up()
     )
     return str(content)
 

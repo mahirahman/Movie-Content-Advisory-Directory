@@ -196,6 +196,15 @@ input:focus {
 /* Small and Mobile Devices */
 @media (max-width: 767px) {
 
+	#scroll-to-top {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		background-color: #888888;
+		color: #f1f1f1;
+		cursor: pointer;
+	}
+
 	.logo,
 	.logo-header {
 		max-width: 90%;

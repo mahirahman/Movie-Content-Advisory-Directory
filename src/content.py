@@ -25,6 +25,7 @@ def construct_head():
         link(rel="icon", href= FAVICON),
         script(src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.js"),
         script(src="/public/js/error.js"),
+        script(src="/public/js/events.js", type="module"),
     )
 
 # Main Page
@@ -62,6 +63,11 @@ def construct_search_not_found():
 def construct_no_advisories(movie_id):
     return div(class_="alert text-center")(
         p("Uh Oh - No Content Advisories Found 🤷")
+    )
+    
+def construct_scroll_to_up():
+    return div(class_="rounded p-2", id="scroll-to-top")(
+        i(class_="fas fa-arrow-up")
     )
 
 # Image container of previously searched movies
