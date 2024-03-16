@@ -1,0 +1,32 @@
+{
+    "name": "Movie Content Advisory Directory",
+    "description": "Search for content advisories for movies and TV shows",
+    "lang": "en-US",
+    "dir": "left",
+    "short_name": "MCAD",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#16181a",
+    "theme_color": "#16181a",
+    "icons": [
+        {
+            "src": "/public/fav/android-chrome-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any"
+        },
+        {
+            "src": "/public/fav/android-chrome-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "/public/fav/maskable-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "maskable"
+        }
+    ]
+}

@@ -7,6 +7,18 @@ window.addEventListener('scroll', function() {
     }
 });
 
-document.getElementById("scroll-to-top").addEventListener("click", function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+if (window.location.href.includes('movies') || window.location.href.includes('advisory')) {
+    document.getElementById("scroll-to-top").addEventListener("click", function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/public/js/service-worker.js').then(function(registration) {
+            //console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            //console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+}

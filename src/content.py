@@ -18,14 +18,16 @@ def construct_head():
         meta(property="og:description", content="Search for content advisories for movies and TV shows."),
         meta(name="keywords", content="movie content advisory directory, movie content advisory, parental guide, parental guidance, content advisory, parental, movies, guidance, tv shows, advisory, ratings, clean, filter"),
         meta(name="author", content="Mahi Rahman"),
+        meta(name="theme-color", content="#16181a"),
         link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"),
         link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"),
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.css"),
         link(rel="stylesheet", href="/public/css/style.css"),
+        link(rel="manifest", href="/public/manifest.json"),
         link(rel="icon", href= FAVICON),
         script(src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.js"),
         script(src="/public/js/error.js"),
-        script(src="/public/js/events.js", type="module"),
+        script(src="/public/js/events.js", type="module")
     )
 
 # Main Page
@@ -35,7 +37,7 @@ def construct_landing_page_body(session):
         br(),
         form(name="movie_input", action="/movies", class_="text-center", onsubmit="return validateForm()")(
             input_(type="text", name="movie_title", placeholder="Search", class_="searchbox", autocomplete="off"),
-            button(type="Submit", value="Search", class_="btn btn-primary")(i(class_="fas fa-search")),
+            button(type="Submit", value="Search", class_="btn btn-primary", aria_label="Search")(i(class_="fas fa-search")),
         ),
         br(),
         p(class_="center previous-searched")("Previous Searched Titles 🎬") if bool(session) else None
@@ -48,7 +50,7 @@ def construct_search_header():
             a(href="/")(img(src=LOGO, alt="MCAD Logo", class_ ="logo-header selector filter"),),
             form(name="movie_input", action="/movies", class_="form-header", onsubmit="return validateForm()")(
                 input_(type="text", name="movie_title", placeholder="Search", class_="searchbox", autocomplete="off"),
-                button(type="Submit", value="Search", class_="btn btn-primary")(i(class_="fas fa-search")),
+                button(type="Submit", value="Search", class_="btn btn-primary", aria_label="Search")(i(class_="fas fa-search")),
             ),
         ),
     )
