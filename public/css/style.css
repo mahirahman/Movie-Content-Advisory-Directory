@@ -193,6 +193,10 @@ input:focus {
 	height: 105px;
 }
 
+#scroll-to-top {
+	display: none;
+}
+
 /* Small and Mobile Devices */
 @media (max-width: 767px) {
 
