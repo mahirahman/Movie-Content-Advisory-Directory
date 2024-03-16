@@ -2,6 +2,10 @@ body {
 	background-color: #16181a;
 }
 
+p {
+	color: #ffffff;
+}
+
 .center {
 	display: block;
 	margin-left: auto;
@@ -22,27 +26,10 @@ input:focus {
 
 .alert {
 	padding: 20px;
-	background-color: #f44336;
-	text-align: center;
+	background-color: #cf463c;
 	width: fit-content;
 	margin: auto;
 	margin-top: 10%;
-}
-
-.alert-text {
-	color: #fff;
-}
-
-.alert-link {
-	font-weight: 400 !important;
-}
-
-.alert-link:hover {
-	color: #efff95;
-}
-
-p {
-	color: #ffffff;
 }
 
 .logo {
@@ -63,14 +50,9 @@ p {
 	-ms-user-select: none;
 }
 
-.form-landing {
-	text-align: center;
-}
-
 .form-header {
 	margin-top: 50px !important;
-	width: -webkit-fill-available;
-	margin: auto;
+	width: 100%;
 }
 
 .searchbox {
@@ -79,28 +61,19 @@ p {
 	width: 30%;
 	color: #ffffff;
 	background-color: #222222;
+
+	&:focus {
+		box-shadow: inset 0 0 0 1.5pt #1a56ba;
+	}
 }
 
-.searchbox:focus {
-	box-shadow: inset 0 0 0 1.5pt #1a56ba;
-}
-
-.searchbox-header {
-	width: -webkit-fill-available;
-	padding: 10px;
-}
-
-.header-flex {
+.header {
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: row;
 }
 
 .movie-list-wrap {
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
-	flex-wrap: wrap;
 	padding-top: 30px;
 }
 
@@ -113,22 +86,37 @@ p {
 	transition: all 200ms ease-out;
 }
 
-.movies-card:hover {
-	box-shadow: 0px 0px 20px;
-}
-
-.card-img-top {
+.card-img {
 	height: 260px;
-}
-
-.btn-primary {
-	margin-left: -4px !important;
-	border-radius: inherit !important;
 }
 
 .card-title {
 	color: #d9d9d9;
 	word-wrap: initial;
+}
+
+.card-details {
+	width: 21rem !important;
+	float: left;
+	margin-top: 20px;
+}
+
+.card-advisory {
+	background-color: #272a2d;
+	width: 97%;
+}
+
+.card-advisory:last-child {
+	margin-bottom: 20px;
+}
+
+.movies-card:hover {
+	box-shadow: 0px 0px 20px;
+}
+
+.btn-primary {
+	margin-left: -4px !important;
+	border-radius: inherit !important;
 }
 
 .list-group-flush>.list-group-item {
@@ -141,36 +129,13 @@ p {
 	font-weight: 400;
 }
 
-.card-subtext {
-	margin: 0 !important;
-}
-
-.card-body-details {
-	padding: 10px !important;
-}
-
 .img-details {
-	height: 496px;
-}
-
-.card-details {
-	width: 21rem !important;
-	float: left;
-	margin-top: 20px;
+	height: 495px;
 }
 
 .status-box {
-	float: right;
 	padding: 1px;
-	margin-left: 10px;
-	margin-top: 5px;
-	text-transform: uppercase;
-	font-size: 13px;
-	align-self: start;
-}
-
-.noVotes {
-	display: none;
+	font-size: 12px;
 }
 
 .mild {
@@ -187,40 +152,6 @@ p {
 
 .none {
 	background-color: #d0d0d0;
-}
-
-.container {
-	display: flex;
-	justify-content: center;
-	margin-top: 10px;
-}
-
-.advisory-box {
-	width: auto;
-	margin: 20px 10px 0px;
-}
-
-.card-advisory {
-	background-color: #272a2d;
-	width: 97%;
-	align-self: center;
-	padding: 10px !important;
-}
-
-.card-advisory:last-child {
-	margin-bottom: 20px;
-}
-
-.round-edges {
-	border-top-left-radius: calc(.5rem - 1px);
-	border-top-right-radius: calc(.5rem - 1px);
-	border-bottom-right-radius: inherit;
-	border-bottom-left-radius: inherit;
-}
-
-.round-edges-top-only {
-	border-top-left-radius: calc(.5rem - 1px);
-	border-top-right-radius: calc(.5rem - 1px);
 }
 
 ::-webkit-scrollbar {
@@ -240,7 +171,7 @@ p {
 }
 
 .scroll-container {
-	height: 106px;
+	height: 105px;
 	width: 520px;
 	white-space: nowrap;
 	overflow-y: hidden;
@@ -257,14 +188,9 @@ p {
 	margin-left: 55%;
 }
 
-.img-block {
-	display: inline-block;
-	overflow: hidden;
-}
-
 .img-width {
-	width: 71px;
-	height: 106px;
+	width: 70px;
+	height: 105px;
 }
 
 /* Small and Mobile Devices */
@@ -288,7 +214,7 @@ p {
 		width: calc(80% - 60px);
 	}
 
-	.header-flex {
+	.header {
 		display: block;
 		text-align: center;
 	}
@@ -307,8 +233,8 @@ p {
 	}
 
 	.card {
-		width: 90%;
-		margin: 5%;
+		width: 90% !important;
+		margin: 5% !important;
 	}
 
 	.card-details {
@@ -316,7 +242,7 @@ p {
 		margin: 5%;
 	}
 
-	.card-img-top {
+	.card-img {
 		height: auto;
 	}
 
@@ -324,6 +250,7 @@ p {
 		float: left;
 		padding: 15px;
 		margin: 5%;
+		width: 90%;
 	}
 
 	.movie-list-wrap {
@@ -356,6 +283,8 @@ p {
 
 	.alert {
 		float: left;
+		padding: 15px;
+		margin: 5%;
 	}
 
 	.searchbox {

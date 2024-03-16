@@ -42,7 +42,7 @@ def movies():
     if not movies_dict or movies_dict == {}:
         PAGE_BODY = construct_search_not_found()
     else:
-        PAGE_BODY = div(class_="movie-list-wrap")(
+        PAGE_BODY = div(class_="d-flex justify-content-center flex-row flex-wrap movie-list-wrap")(
             construct_movie_cards(movies_dict)
         )
 

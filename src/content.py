@@ -32,7 +32,7 @@ def construct_landing_page_body(session):
     return div(
         img(src=LOGO, alt="MCAD Logo", class_ ="logo center selector filter"),
         br(),
-        form(name="movie_input", action="/movies", class_="form-landing", onsubmit="return validateForm()")(
+        form(name="movie_input", action="/movies", class_="text-center", onsubmit="return validateForm()")(
             input_(type="text", name="movie_title", placeholder="Search", class_="searchbox", autocomplete="off"),
             button(type="Submit", value="Search", class_="btn btn-primary")(i(class_="fas fa-search")),
         ),
@@ -43,7 +43,7 @@ def construct_landing_page_body(session):
 # Header in Movies Page
 def construct_search_header():
     return div(
-        div(class_="header-flex")(
+        div(class_="header")(
             a(href="/")(img(src=LOGO, alt="MCAD Logo", class_ ="logo-header selector filter"),),
             form(name="movie_input", action="/movies", class_="form-header", onsubmit="return validateForm()")(
                 input_(type="text", name="movie_title", placeholder="Search", class_="searchbox", autocomplete="off"),
@@ -54,13 +54,13 @@ def construct_search_header():
 
 # No Movies Error Box
 def construct_search_not_found():
-    return div(class_="alert")(
+    return div(class_="alert text-center")(
         p("Uh Oh - No Title Found 🤷")
     )
 
 # No Advisories Available Error Box
 def construct_no_advisories(movie_id):
-    return div(class_="alert")(
+    return div(class_="alert text-center")(
         p("Uh Oh - No Content Advisories Found 🤷")
     )
 
@@ -70,7 +70,7 @@ def construct_previous_searched_movies(session):
     for movie_id in session:
         img_cards.append(
             a(href=f'/advisory/{movie_id}')(
-                div(id="img-exist", class_="img-block")(
+                div(id="img-exist", class_="d-inline-block overflow-hidden")(
                     img(class_="img-width selector", src=f'{session[movie_id][0]}', alt=f'{session[movie_id][1]} ({session[movie_id][2]})')
                 )   
             )
@@ -84,7 +84,7 @@ def construct_movie_cards(movie_list):
         movie_cards.append(
             div(class_="card movies-card")(
                 a(href=url_for('advisory', movie_ID=movie_id))(
-                    img(src=f"{movie_list[movie_id]['img']}", class_="card-img-top selector", alt=f"{movie_list[movie_id]['title']} ({movie_list[movie_id]['year']})"),
+                    img(src=f"{movie_list[movie_id]['img']}", class_="card-img selector", alt=f"{movie_list[movie_id]['title']} ({movie_list[movie_id]['year']})"),
                     div(class_="card-body")(
                         h5(class_="card-title search-title")(
                             f"{movie_list[movie_id]['title']}"
@@ -101,11 +101,11 @@ def construct_movie_cards(movie_list):
 # Generates Movie Details Card
 def construct_movie_details_card(title, year, title_img, rating, type, running_time, certificate, plot):
     return div(class_="card card-details")(
-        img(src=title_img, class_="card-img-top selector img-details", alt=f'{title} ({year})'),
-        div(class_="card-body card-body-details")(
+        img(src=title_img, class_="card-img selector img-details", alt=f'{title} ({year})'),
+        div(class_="card-body p-2")(
             h5(class_="card-title")(title),
             h5(class_="card-title")(f'({year})'),
-            p(class_="card-subtext")(f'{rating}')
+            p(class_="m-0")(f'{rating}')
         ),
         div(class_="list-group list-group-flush")(
             h5(class_="list-group-item")(f'{type} - {running_time}'),
@@ -154,12 +154,12 @@ def construct_advisory(html_nudity_list, html_violence_list, html_profanity_list
     for title, status, html_list in advisory_sections:
         advisory_cards.append(
             (
-                div(class_="container")(
-                    h5(class_="card-title round-edges-top-only")(title),
-                    h5(class_=f'status-box {status}')(status)
+                div(class_="d-flex justify-content-center mt-3")(
+                    h5(class_="card-title")(title),
+                    h5(class_=f'align-self-center mx-2 text-uppercase status-box {status}')(status)
                 ),
-                div(class_="card-body card-advisory round-edges")(html_list)
+                div(class_="card-body align-self-center p-2 card-advisory rounded")(html_list)
             )
         )
     
-    return div(class_="card text-center advisory-box")(advisory_cards)
+    return div(class_="card text-center w-auto mt-4 mx-2")(advisory_cards)
