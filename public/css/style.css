@@ -150,7 +150,7 @@ input:focus {
 	background-color: #ffb3ad;
 }
 
-.none {
+.none, .noVotes {
 	background-color: #d0d0d0;
 }
 

@@ -164,7 +164,7 @@ def construct_advisory(html_nudity_list, html_violence_list, html_profanity_list
             (
                 div(class_="d-flex justify-content-center mt-3")(
                     h5(class_="card-title")(title),
-                    h5(class_=f'align-self-center mx-2 text-uppercase status-box {status}')(status)
+                    h5(class_=f'align-self-center mx-2 text-uppercase status-box {status}')("NONE" if status == 'noVotes' else status)
                 ),
                 div(class_="card-body align-self-center p-2 card-advisory rounded")(html_list)
             )
